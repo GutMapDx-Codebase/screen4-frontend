@@ -1,0 +1,105 @@
+.App {
+  /* text-align: center; */
+  font-family: 'Poppins';
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
+h4 {
+  margin: 0;
+}
+
+h5 {
+  margin: 0;
+}
+
+
+*::selection {
+  background-color: #19b0e6;
+  text-shadow: 2px 2px 5px #7FA2C4; /* Simulating shadow around the selected text */
+  color: #fff;
+  
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+
+
+
+::-webkit-scrollbar {
+  width: 0.7vw; /* Width for vertical scrollbar */
+  height: 0.7vw; /* Height for horizontal scrollbar */
+  background: #fff; /* Background of the scrollbar track */
+  border-radius: 20px;
+}
+
+/* Vertical Scrollbar Thumb */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, transparent 0%, #19b0e6 100%); /* Gradient from transparent to color */
+  border-radius: 20px;
+  min-height: 200px; /* Set minimum height for the vertical scrollbar thumb */
+}
+
+/* Horizontal Scrollbar Thumb */
+::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(to right, transparent 0%, #19b0e6 100%); /* Gradient for horizontal scrollbar */
+  border-radius: 20px;
+  min-width: 200px; /* Set minimum width for the horizontal scrollbar thumb */
+}
+
+/* Hover effect for Vertical Scrollbar Thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, transparent 0%, #19b0e6 100%); /* Change color on hover for vertical */
+}
+
+/* Hover effect for Horizontal Scrollbar Thumb */
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background: linear-gradient(to right, transparent 0%, #19b0e6 100%); /* Change color on hover for horizontal */
+}
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

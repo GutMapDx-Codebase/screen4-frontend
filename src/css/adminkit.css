@@ -1,0 +1,463 @@
+.adminkitmainbody {
+    width: 72%;
+    /* background-color: rgb(250, 161, 60); */
+    height: fit-content;
+    min-height: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+    padding: 10px 2%;
+}
+
+.assignbuttom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 15px; */
+}
+
+.deletkitbuton {
+
+    color: red;
+
+}
+
+.activeeee {
+    background-color: #19b0e6;
+    color: #fff;
+}
+
+
+.pagination {
+    /* background-color: #565d68; */
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin: 10px 0;
+
+}
+
+.pagination span {
+    /* background-color: #565d68; */
+    /* width: 30%; */
+    padding: 10px 10px;
+    /* border: 1px solid #19b0e6; */
+    cursor: pointer;
+
+}
+
+.pagination span:hover {
+    background-color: #acaeb33a;
+
+
+}
+
+.button {
+    background-color: #19b0e6;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+
+.assignkitbuton {
+    background-color: #19b0e6;
+    color: white;
+    border-radius: 5px;
+}
+
+.popup {
+
+    background-color: #ffffffe5;
+    font-size: 0.9em !important;
+    width: 60%;
+    height: fit-content;
+    max-height: 70vh;
+    overflow-y: auto;
+    position: fixed;
+    top: 120px;
+    left: 20%;
+    padding: 20px;
+    z-index: 30;
+    border-radius: 20px;
+    /* From https://css.glass */
+    /* background: rgba(255, 255, 255, 0.24); */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.7px);
+    -webkit-backdrop-filter: blur(12.7px);
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.popup form {
+    width: 100%;
+    /* background-color: #19b0e6; */
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.popup form input {
+
+    width: 80%;
+    height: 10px;
+    padding: 10px 20px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 0 0 5px;
+    color: #565d68;
+    transition: all .2s linear;
+    outline: none;
+}
+
+.popupformInput {
+
+    width: 80%;
+    /* background-color: #19b0e6; */
+    height: 32px;
+    padding: 0px 20px !important;
+
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 0 0 5px;
+    color: #565d68;
+    transition: all .2s linear;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+
+.popupformInput input {
+
+    width: 100%;
+    height: 100% !important;
+    /* background-color: #66b741; */
+    font-size: 0.9rem !important;
+    padding: 0 !important;
+
+}
+
+
+
+.popup form input:focus {
+    outline: none;
+    border-color: #19b0e6;
+    box-shadow: 0 0 0 0.2rem #19b0e644;
+}
+
+
+
+.popup form select {
+
+    width: 83%;
+    height: 30px;
+    /* padding: 10px 20px; */
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 0 0 5px;
+    color: #565d68;
+    transition: all .2s linear;
+    outline: none;
+}
+
+.popup form select:focus {
+    outline: none;
+    border-color: #19b0e6;
+    box-shadow: 0 0 0 0.2rem #19b0e644;
+}
+
+
+.popup form textarea {
+
+    width: 80%;
+    height: 80px;
+    padding: 10px 20px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 0 0 5px;
+    color: #565d68;
+    transition: all .2s linear;
+    outline: none;
+}
+
+.popup form textarea:focus {
+    outline: none;
+    border-color: #19b0e6;
+    box-shadow: 0 0 0 0.2rem #19b0e644;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.popup form button {
+
+    background-color: #19b0e6;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    height: 32px;
+    width: 20%;
+}
+
+.popup form button:hover {
+
+    cursor: pointer;
+}
+
+
+.bownpopupbutton {
+    /* background-color: #19b0e6; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.bownpopupbutton button {
+    width: 30%;
+    height: 30px;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.bownpopupbutton button:hover {
+    cursor: pointer;
+}
+
+.bownpopupbutton button:active {
+    scale: 0.99;
+}
+
+
+
+
+
+.popupbg {
+    background-color: rgba(0, 0, 0, 0.692);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 25;
+}
+
+
+.userbox {
+    width: 89%;
+    height: fit-content;
+    max-height: 35vh;
+    padding: 10px 0;
+    overflow-y: auto;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding-left: 35px;
+    justify-content: center;
+    /* background-color: yellow; */
+}
+.userboxxinside.clicked {
+    box-shadow: 0 0 11px 2px #19b0e6; /* More intense shadow after click */
+    transform: scale(1.015); /* Slight shrink on click */
+    /* background-color: #19b0e6; Color change after click */
+    color: #19b0e6; /* Change text color to white if needed */
+}
+
+.userboxxinside {
+    overflow: hidden;
+    background: white;
+    width: 340px;
+    padding: auto;
+    text-align: left;
+    /* overflow-x: scroll; */
+    height: 100px;
+    /* background-color: violet; */
+    display: flex;
+    border-radius: 10px;
+    /* box-shadow: 1px 1px 1px 1px #19b0e6; */
+    box-shadow: 1px 2px 2px 1px #19b0e6;;
+    /* gap: 3px; */
+}
+
+.userboxxinside:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px #19b0e6;
+
+}
+
+
+.userboxxinside img {
+    border-radius: 10px 0 0 10px;
+}
+
+.userboxxinside div {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.userboxxinside h5 {
+    display: flex;
+
+}
+
+.clearsearch {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    width: fit-content;
+    color: #19b0e6;
+
+}
+
+.clearsearch button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: red;
+    border: 1px solid red;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 5px;
+
+}
+
+.clearsearch button:hover {
+
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid red;
+    color: red;
+
+
+}
+
+
+.kitdetailsmain {
+    display: flex;
+    flex-direction: column;
+    /* gap: 5px; */
+    margin-top: 20px;
+}
+
+
+.kitdetails {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    /* background-color: yellow; */
+    position: relative;
+
+}
+
+
+.kitdetails::after {
+
+    content: "";
+    width: 95%;
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    background-color: #19b0e6;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:1060px) {
+
+    .adminkitmainbody {
+        width: 97%;
+        /* background-color: rgb(60, 250, 85); */
+        min-height: 500px;
+        height: fit-content;
+        overflow-x: scroll;
+        font-size: smaller;
+    }
+
+    .popup {
+        width: 88%;
+        left: 1%;
+    }
+
+    .kitdetails {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 12px;
+        /* background-color: yellow; */
+        flex-direction: column;
+        margin-bottom: 50px;
+    }
+
+    .kitdetails :nth-child(2) {
+        margin-left: 30px;
+    }
+
+    .popup form button {
+        background-color: #19b0e6;
+        color: #fff;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        height: 32px;
+        width: 90%;
+    }
+
+    .popup form {
+        width: 100%;
+        /* background-color: #19b0e6; */
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

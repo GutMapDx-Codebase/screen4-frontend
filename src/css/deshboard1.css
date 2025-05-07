@@ -1,0 +1,88 @@
+.deshboardmain {
+    /* background: rgb(188, 194, 254); */
+    background: linear-gradient(90deg, #19afe6 26%, #8fbfcf 50%, #a6d2e0 83%);
+    display: flex;
+    padding: 120px 20px 20px 20px;
+    justify-content: space-between;
+    min-height: 85vh;
+
+}
+
+.mainbody {
+    width: 72%;
+    /* background-color: rgb(250, 161, 60); */
+    height: fit-content;
+    min-height: 610px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+    padding: 10px 2%;
+}
+
+.piechars {
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 150px;
+}
+
+.kitscouts{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 94%;
+    padding: 20px 2%;
+}
+
+.boxxxx{
+    background-color: #2499ff;
+    width: 20%;
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+
+}
+.bbbbg{
+    background-color: #002631;
+}
+
+.imp {
+    margin-bottom: 70px;
+    height: fit-content;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+.div1{
+    width: 50%;
+}
+
+@media screen and (max-width:1060px) {
+    
+    .deshboardmain {
+        flex-direction: column;
+        padding: 120px 5px;
+    }
+
+    .mainbody{
+        width: 97%;
+        /* background-color: yellow; */
+        overflow-x: scroll;
+        font-size: smaller;
+    }
+    .piechars{
+        flex-direction: column;
+
+    }
+
+    .div1{
+        width: 100%;
+    }
+    
+    }
