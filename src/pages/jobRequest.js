@@ -346,7 +346,7 @@ const limit = 10; // or whatever you want per page
   <div
     className="key jobreq jobreqhead"
     style={{
-      fontSize: "24px",
+      // fontSize: "24px",
       marginBottom: "10px",
       marginTop: "10px",
       textAlign: "center",
@@ -507,8 +507,8 @@ const limit = 10; // or whatever you want per page
                   key={index}
                   style={{
                     marginBottom: "20px",
-                    width: "60%",
-                    height: "102px",
+            
+                    // height: "102px",
                     borderRadius: "13px",
                     background: "#f3ffdf",
                     border: "1px solid #80c20a",
@@ -517,13 +517,10 @@ const limit = 10; // or whatever you want per page
                   onClick={() => handleClientClick(client._id)}
                 >
                   <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-around",
-                      alignItems: "flex-start",
-                    }}
+                  className="jobrequestcontainer"
+                 
                   >
-                    <div style={{ width: '80%' }}>
+                    <div className="conpart1" >
                       <div className="key">
                         Job Reference Number :{" "}
                         <span className="mybold">{client.jobReferenceNo}</span>
@@ -575,20 +572,10 @@ const limit = 10; // or whatever you want per page
 
                   {selectedTab === "Accepted" && (
                       <div class="" 
-                      // style={{width: "200px"}}
                       >
                       <button
                         onClick={(e) =>{ navigate(`/jobrequest/${client._id}`,'_blank'); e.stopPropagation()}}
-                        // style={{
-                        //   width: "200px",
-                        //   border:"none",
-                        //   marginTop: "5px",
-                        //   padding: "8px 30px",
-                        //   borderRadius: "20px",
-                        //   backgroundColor: "#80c20a",
-                        //   color: "white",
-                        //   cursor: "pointer",
-                        // }}
+                      
                         className="custom-button createjob2"
                       >
                         Update Timesheet
@@ -598,13 +585,7 @@ const limit = 10; // or whatever you want per page
                   {selectedTab === "Pending" && token==="dskgfsdgfkgsdfkjg35464154845674987dsf@53" && (
                     isDeleting && client._id === deletedId ?<h3 style={{color:"#7cc209"}}>Deleting...</h3> : 
                       <div class="" >
-                      
-                      {/* <button
-                        onClick={async (e) => {deleteJobRequest(client._id); e.stopPropagation();}}
-                        className="custom-button"
-                      >
-                        Delete
-                      </button> */}
+             
                       
   <Popconfirm
     title="Are you sure you want to delete this job request?"

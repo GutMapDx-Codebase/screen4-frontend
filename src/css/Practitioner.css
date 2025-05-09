@@ -151,6 +151,15 @@
   width: 200px;
 }
 
+.conpart1{
+  width: 80%;
+}
+.jobrequestcontainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 120px;
+}
 @media screen and (max-width:700px) {
 
 
@@ -324,16 +333,35 @@
         margin-left: 5px!important;
       }
   }
-  @media screen and (max-width: 410px) {
+  @media screen and (max-width: 420px) {
+    .completeddiv{
+      display: flex;
+      width: auto;
+      gap:10px;
+    }
+    .completeddiv button{
+      padding: 6px 12px;
+      width: auto;
+    }
     .pad {
       padding: 20px;
-      padding-bottom: 120px;
+      /* padding-bottom: 120px; */
+    }
+    .jobrequestcontainer{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
     .custom-button{
       width:70px;
       padding: 8px 15px;
       font-size: 10px;
 
+    }
+    .conpart1{
+      width: 100%;
     }
     .Practitionermainbody{
       padding-left: 7px!important;
@@ -344,6 +372,7 @@
 
   .createjob2 {
     transition: background 0.3s ease, transform 0.2s ease;
+    width: auto;
   }
   
   .createjob2:hover {
@@ -373,11 +402,14 @@
    padding: auto;
   } */
   
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 420px) {
     .jobrequestform{
       width: 300px!important;
       overflow: hidden!important;
       padding: 20px!important;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
     .customTable{
       width: 200px!important;
@@ -405,7 +437,7 @@
       font-size: 13px!important;
     }
     .heading{
-      font-size: 13px!important;
+      font-size: 12px!important;
     }
     td{
       font-size: 12px!important;
@@ -419,7 +451,7 @@
 .cardforcollector{
   width: 600px;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
   .cardforcollector{
     width: 300px;
   }
@@ -435,6 +467,9 @@
   }
   .createjob{
     z-index: 200!important;
+  }
+  .createjob2{
+    width: auto!important;
   }
 }
 
@@ -623,7 +658,7 @@
   display: flex;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
   .explabel{
     width: 30px !important;
     margin-left: 5px!important;
@@ -760,6 +795,10 @@
     display: flex;
     flex-direction: column;
   }
+  .donor{
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 
   .ant-upload {
     width: 100% !important;
@@ -773,3 +812,4 @@
     width: 100% !important;
   } */
 }
+

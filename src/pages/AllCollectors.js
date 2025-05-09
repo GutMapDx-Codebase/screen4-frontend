@@ -144,7 +144,7 @@ const AllClients = () => {
                 transform: token === "dskgfsdgfkgsdfkjg35464154845674987dsf@53" ? "translateX(-50%)" : null, // Ensures perfect centering
               }}
             >
-              All Collectors ({clients.length})
+              All Collectors  ({clients.length})
             </div>
 
             {/* Right-Aligned Button */}
@@ -161,6 +161,8 @@ const AllClients = () => {
                   borderRadius: "10px",
                   fontWeight: "bold",
                   textDecoration: "none",
+                  
+                  
                 }}
               >
                 Add a Collector
