@@ -50,17 +50,17 @@ const tests = ["Alcohol","Amphetamines","Benzodiazepines","Buprenorphine","Blood
         setReasonData(reasonDataArray);
 
         // Extract city names from locations
-        const cityCounts = {};
-        for (const client of clients) {
-          const location = client.location || "Unknown";
-          const city = await fetchCityFromLocation(location); // Fetch city name
-          cityCounts[city] = (cityCounts[city] || 0) + 1;
-        }
-        const locationDataArray = Object.keys(cityCounts).map((city) => ({
-          location: city,
-          count: cityCounts[city],
-        }));
-        setLocationData(locationDataArray);
+        // const cityCounts = {};
+        // for (const client of clients) {
+        //   const location = client.location || "Unknown";
+        //   const city = await fetchCityFromLocation(location); // Fetch city name
+        //   cityCounts[city] = (cityCounts[city] || 0) + 1;
+        // }
+        // const locationDataArray = Object.keys(cityCounts).map((city) => ({
+        //   location: city,
+        //   count: cityCounts[city],
+        // }));
+        // setLocationData(locationDataArray);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

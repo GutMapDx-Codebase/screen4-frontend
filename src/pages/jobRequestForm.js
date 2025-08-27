@@ -13,6 +13,7 @@ function JobRequestForm() {
   const [isloading, setIsLoading] = useState(false);
   const [clientDetails,setClientDetails] = useState()
   const [currentSignatureField, setCurrentSignatureField] = useState("");
+  const [allCollectors, setAllCollectors] = useState([]);
   const openSignaturePad2 = (fieldName) => {
     setCurrentSignatureField(fieldName);
     setIsSignaturePadOpen(true);
@@ -63,6 +64,7 @@ function JobRequestForm() {
     laboratoryAddress: "",
     sampleDeliveryMethod: "",
     flightVessel: "",
+    collectorid:""
   });
   const navigate = useNavigate()
   const canvasRef = useRef(null);
@@ -95,6 +97,31 @@ function JobRequestForm() {
       return;
     }
   }, [navigate]);
+
+
+
+  const fetchCollectors = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/getcollectors`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch client data");
+      }
+      const data = await response.json();
+
+      if (!Array.isArray(data)) {
+        console.error("Unexpected response format:", data);
+        setAllCollectors([]);
+        return;
+      }
+
+      setAllCollectors(data);
+    } catch (err) {
+      // setError(err.message);
+      console.log(err)
+    } finally {
+      // setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -142,6 +169,7 @@ function JobRequestForm() {
     };
 
     fetchCustomers();
+    fetchCollectors();
   }, []);
   const extractEmailFromCustomer = (str) => {
     const match = str.match(/\((.*?)\)/);
@@ -462,6 +490,7 @@ function JobRequestForm() {
         nonNegativeSamples: "",
         laboratoryAddress: "",
         sampleDeliveryMethod: "",
+        collectorid:""
       });
       navigate("/jobrequests")
     } catch (error) {
@@ -617,12 +646,31 @@ function JobRequestForm() {
               ))}
             </select>
           </div>
-
-
+<hr />
+          <div className="donor">
+            <label>Collector</label>
+            <select
+              className="inputstyle"
+              name="collector"
+              value={formData.collector || ""}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select a collector
+              </option>
+{allCollectors.map((collector)=>{
+  return  <option key={collector.id} value={collector.email + " "}>{collector.name}({collector.email})</option>
+})            } 
+              {/* // <option value="Collector B">Collector B</option>
+              // <option value="Collector C">Collector C</option> */}
+              {/* Add more collectors as needed */}
+            </select>
+          </div>
 
 
           <hr></hr><div className="donor">
-            <label style={{ width: "180px" }}>Location </label>
+            <label >Location </label>
             
         <select
           className="inputstyle"

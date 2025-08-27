@@ -648,7 +648,7 @@ const handleSubmit = async (e) => {
           </div>
           <hr></hr>
           <div className="donor">
-            <label style={{ width: "180px" }}>Location </label>
+            <label>Location </label>
             <input
               className="inputstyle"
               type="text"

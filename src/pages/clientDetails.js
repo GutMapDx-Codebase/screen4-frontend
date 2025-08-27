@@ -899,22 +899,22 @@ function Screen4Details() {
               <div className="donor">
                 {/* BAR CODE NUMBER */}
                 <label>BAR CODE NUMBER</label>
-                <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                  <input
+                <div style={{ display: "flex", gap: "8px", alignItems: "center",flexDirection: formData.barcodeImage && "column" }}>
+                {!formData.barcodeImage &&  <input
                     className="inputstyle"
                     type="text"
                     name="barcodeno"
                     value={formData.barcodeno}
                     onChange={handleChange}
-                  />
-                  <label className="createjob2" style={{ padding: "6px 10px", cursor: "pointer" }}>
-                    Photo
+                  />}
+                {formData.barcodeImage && (
+                  <img src={formData.barcodeImage} alt="barcode" style={{ marginTop: "6px", maxWidth: "120px" }} />
+                )}
+                  <label className="createjob2" style={{ padding: "6px 10px", cursor: "pointer",borderRadius:"10px",backgroundColor:"#80c209",fontSize:"10px",textAlign:"center" }}>
+                    Upload
                     <input type="file" accept="image/*" capture="environment" onChange={handleBarcodePhoto} style={{ display: "none" }} />
                   </label>
                 </div>
-                {formData.barcodeImage && (
-                  <img src={formData.barcodeImage} alt="barcode" style={{ marginTop: "6px", maxWidth: "140px" }} />
-                )}
               </div>
               <hr></hr>
               <div className="donor">
@@ -1840,7 +1840,7 @@ function Screen4Details() {
                 className="bone"
                 style={{
                   border: "1px solid black",
-                  borderRight: "none",
+                  // borderRight: "none",
                   // width: "30%",
                   // height: "100px",
                 }}
