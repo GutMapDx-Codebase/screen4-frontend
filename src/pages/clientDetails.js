@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import '../css/Practitioner.css'
 import { useRef } from "react";
+ 
 
 function Screen4Details() {
   const navigate = useNavigate()
@@ -50,11 +51,15 @@ function Screen4Details() {
           border: "1px solid #ccc",
           cursor: "crosshair",
           width:"100%",
+          touchAction: "none",
         }}
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={finishDrawing}
         onMouseLeave={finishDrawing}
+        onTouchStart={startDrawingTouch}
+        onTouchMove={drawTouch}
+        onTouchEnd={finishDrawingTouch}
       />
       <div style={{ marginTop: "10px" }}>
         <button
@@ -180,6 +185,49 @@ function Screen4Details() {
     setIsDrawing(false);
   };
 
+  // Touch support for mobile/tablets
+  const getTouchPos = (touchEvent) => {
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const touch = touchEvent.touches[0] || touchEvent.changedTouches[0];
+    return {
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
+    };
+  };
+
+  const startDrawingTouch = (e) => {
+    e.preventDefault();
+    const { x, y } = getTouchPos(e);
+    contextRef.current.beginPath();
+    contextRef.current.moveTo(x, y);
+    setIsDrawing(true);
+  };
+
+  const drawTouch = (e) => {
+    if (!isDrawing) return;
+    e.preventDefault();
+    const { x, y } = getTouchPos(e);
+    contextRef.current.lineTo(x, y);
+    contextRef.current.stroke();
+  };
+
+  const finishDrawingTouch = (e) => {
+    e.preventDefault();
+    contextRef.current.closePath();
+    setIsDrawing(false);
+  };
+  const handleBarcodePhoto = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      setFormData((prev) => ({ ...prev, barcodeImage: reader.result }));
+      message.success("Barcode photo captured");
+    };
+    reader.readAsDataURL(file);
+  };
+
 
 
 
@@ -222,6 +270,7 @@ function Screen4Details() {
     idsource: "",
     gender: "",
     barcodeno: "",
+    barcodeImage: "",
     refno: "",
     dateoftest: "",
     alcohoDeclaration: "",
@@ -685,6 +734,7 @@ function Screen4Details() {
                   placeholder="Enter Company Name"
                 />
               </div>
+              
 
               <div className="donor">
                 {/* Location */}
@@ -849,15 +899,22 @@ function Screen4Details() {
               <div className="donor">
                 {/* BAR CODE NUMBER */}
                 <label>BAR CODE NUMBER</label>
-                <input
-                  // style={{ width: "35%", marginLeft: "0px" }}
-                  className="inputstyle"
-                  type="number"
-                  name="barcodeno"
-                  value={formData.barcodeno}
-                  onChange={handleChange}
-                  required
-                />
+                <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                  <input
+                    className="inputstyle"
+                    type="text"
+                    name="barcodeno"
+                    value={formData.barcodeno}
+                    onChange={handleChange}
+                  />
+                  <label className="createjob2" style={{ padding: "6px 10px", cursor: "pointer" }}>
+                    Photo
+                    <input type="file" accept="image/*" capture="environment" onChange={handleBarcodePhoto} style={{ display: "none" }} />
+                  </label>
+                </div>
+                {formData.barcodeImage && (
+                  <img src={formData.barcodeImage} alt="barcode" style={{ marginTop: "6px", maxWidth: "140px" }} />
+                )}
               </div>
               <hr></hr>
               <div className="donor">
@@ -870,7 +927,6 @@ function Screen4Details() {
                   name="refno"
                   value={formData.refno}
                   onChange={handleChange}
-                  required
                 />
               </div>
               <hr></hr>

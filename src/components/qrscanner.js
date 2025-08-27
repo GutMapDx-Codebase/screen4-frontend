@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Modal } from "antd";
-import { Html5Qrcode } from "html5-qrcode";
+import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 
 export default function QRScannerModal({ isOpen, onClose, onScanSuccess }) {
   const qrRef = useRef(null);
@@ -12,19 +12,28 @@ export default function QRScannerModal({ isOpen, onClose, onScanSuccess }) {
 console.log("Scanner initialized");
       scannerRef.current
         .start(
-          { facingMode: "environment" }, // use back camera
+          { facingMode: "environment" },
           {
             fps: 10,
             qrbox: 250,
+            formatsToSupport: [
+              Html5QrcodeSupportedFormats.QR_CODE,
+              Html5QrcodeSupportedFormats.CODE_128,
+              Html5QrcodeSupportedFormats.CODE_39,
+              Html5QrcodeSupportedFormats.EAN_13,
+              Html5QrcodeSupportedFormats.EAN_8,
+              Html5QrcodeSupportedFormats.UPC_A,
+              Html5QrcodeSupportedFormats.UPC_E,
+              Html5QrcodeSupportedFormats.ITF
+            ],
           },
           (decodedText) => {
             console.log("Scanned code:", decodedText);
-            onScanSuccess(decodedText); // send value back to parent
-            handleClose(); // auto-close modal
+            onScanSuccess(decodedText);
+            handleClose();
           },
           (error) => {
-            // console.warn("QR Scan error", error); // you can suppress this
-            console.log("QR Scan error", error); // you can suppress this
+            console.log("QR/Barcode Scan error", error);
           }
         )
         .catch((err) => {
