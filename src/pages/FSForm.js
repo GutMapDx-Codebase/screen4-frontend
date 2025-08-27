@@ -592,7 +592,9 @@ const handleChange = async (e) => {
           >
             <div className="donor">
               {/* GCAA LIC No */}
-              <label style={{ width: "180px" }}>
+              <label 
+              // style={{ width: "180px" }}
+              >
                 GCAA LIC No{" "}
                 <span style={{ fontSize: "10px" }}>(if applicable)</span>:
               </label>
@@ -603,7 +605,7 @@ const handleChange = async (e) => {
                 value={formData.gcalicno}
                 placeholder="Enter GCAA LIC No"
                 onChange={handleChange}
-                style={{ width: "39%" }}
+                // style={{ width: "39%" }}
               />
             </div>
             <div className="donor">
@@ -615,7 +617,7 @@ const handleChange = async (e) => {
                 name="dob"
                 value={formData.dob}
                 onChange={handleChange}
-                style={{ width: "99%" }}
+                // style={{ width: "99%" }}
                 required
               />
             </div>
@@ -821,10 +823,12 @@ const handleChange = async (e) => {
               <hr></hr>
               <div className="donor">
                 {/* DATE OF TEST: */}
-                <label style={{ width: "180px" }}>DATE OF TEST<span style={{ color: "red" }}>*</span></label>
+                <label 
+                // style={{ width: "180px" }}
+                >DATE OF TEST<span style={{ color: "red" }}>*</span></label>
                 <input
                   className="inputstyle"
-                  style={{ width: "36%", marginLeft: "0px" }}
+                  // style={{ width: "36%", marginLeft: "0px" }}
                   type="date"
                   name="dateoftest"
                   value={formData.dateoftest}
@@ -962,7 +966,7 @@ const handleChange = async (e) => {
             <div
               class="second-container-part1"
               style={{
-                width: "35.5%",
+                // width: "35.5%",
                 border: "1px solid black",
                 padding: "10px",
               }}
@@ -1108,7 +1112,7 @@ const handleChange = async (e) => {
             <div
               class="second-container-part2"
               style={{
-                width: "58.8%",
+                // width: "58.8%",
                 border: "1px solid black",
                 padding: "10px",
               }}
@@ -1574,8 +1578,8 @@ const handleChange = async (e) => {
             <div
               class="head"
               style={{
-                border: "1px solid black",
-                borderBottom: "none",
+                // border: "1px solid black",
+                // borderBottom: "none",
                 width: "98.7%",
                 height: "30px",
                 fontSize: "15px",

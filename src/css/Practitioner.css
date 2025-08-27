@@ -199,13 +199,13 @@
     background: #80c209;
   }
   
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
     .container {
-      justify-content: flex-start; /* Override for mobile */
-      overflow: auto; /* Allow scrolling on mobile */
+      justify-content: flex-start; 
+      overflow: auto; 
     }
   }
-  
+   */
 
 .mybold{
     font-size: 17px;
@@ -392,7 +392,8 @@
 
   /* / job request form resposive css/  =-=-=-=-==-=-=-=-=-=-=-       ------------------------------------- */
   .jobrequestform{
-    width: 900px!important;
+    /* width: 900px!important; */
+    width: 70%;
   }
   .customTable{
     width: 100%;
@@ -415,26 +416,26 @@
       width: 200px!important;
       font-size: 12px!important;
     }
-    input{
+    /* input{
       width: 135px!important;
       padding: 0px;
-    }
+    } */
     .facilitiesCheck label{
       display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     }
     .donor label{
-      font-size: 13px!important;
+      font-size: 12px!important;
     }
     ul li{ 
-      font-size: 13px!important;
+      font-size: 12px!important;
     }
     .jobrequestformtitle{
       font-size: 16px!important;
     }
     .h4{
-      font-size: 13px!important;
+      font-size: 12px!important;
     }
     .heading{
       font-size: 12px!important;
@@ -468,27 +469,124 @@
   .createjob{
     z-index: 200!important;
   }
-  .createjob2{
-    width: auto!important;
+  .COCform{
+    padding: 15px 20px 20px;
+    width: 90%;
   }
+  /* .createjob2{
+    width: auto!important;
+  } */
 }
 
 
 
 /* ========================================== COC Form  ============================================= */
+.inputstyle{
+  /* width: 33%; */
+}
+.part1,
+.part2,
+.part3 {
+  width: 100%;
+}
+.donor{
+  width: 100%;
+  display: flex;
+  gap: 60px;
+}
+.label{
+  width: 70%;
+}
+.donorConcentToTest{
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+}
 .yesnolabel{
   width: 100px;
 }
 .COCform{
-  width: 900px;
+  /* width: 900px; */
+     width: 70%;
+}
+.adulteration-body{
+  width: 100%;
+  display: flex;
+}
+.bone{
+  width: 35%;
+}
+.btwo{
+  width: 45%;
+}
+.bthree{
+  width: 20%;
+}
+.second-row{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* @media screen and (max-width:1040px) {
+  .donorConcentToTest{
+    flex-direction: column  ;
+  }
+} */
+@media screen and (max-width:1312px) {
+  .adulteration-body{
+    flex-direction: column;
+  }
+  .bone{
+  width: 100%;
+}
+.btwo{
+  width: 100%;
+}
+.bthree{
+  width: 100%;
+}
+  .second-container{
+    flex-direction: column; 
+  }
+  .second-container-part1{
+    /* width: 100%; */
+  }
+  .second-container-part2{
+    /* width: 100%; */
+  }
+}
+@media screen and (max-width:1000px) {
+  .donorConcentToTest,.second-row{
+    display: flex;
+    flex-direction: column;
+  }
+  .part2 div,
+  .part3 div {
+  flex-direction: column; 
+  width: 100%;
+  justify-content: flex-start;
+}
+}
+@media screen and (max-width:800px) {
+  .part1,.part2,.part3{
+    /* width: 100%; */
+    padding-left: 30px;
+  }
+  .last-row,.lotexprow{
+    flex-direction: column;
+  }
 }
 @media screen and (max-width:400px) {
   .radioyesno{
     width: auto!important;
   }
   .COCform{
-    width: 300px;
+    /* width: 300px; */
+    width: 90%;
     overflow: hidden!important;
+    padding: 15px 20px 20px!important;
   }
   .yesnolabel{
     width: 50px;
@@ -538,7 +636,7 @@
 } */
 
 /* Responsive on small screens */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .second-container {
     flex-direction: column;
   }
@@ -547,7 +645,7 @@
   .second-container-part2 {
     width: 100% !important;
   }
-}
+} */
 
 
 @media screen and (max-width: 400px) {
@@ -566,14 +664,14 @@
   }
   .inner2 label {
     font-size: 13px !important;
-    width: 10px !important;
+    /* width: 10px !important; */
   }
   .reasonlabel{
     width: auto!important;
   }
 
   .inputstyle {
-    width: 80% !important;
+    /* width: 100% !important; */
   }
   .Flabel{
     margin-left: 0px!important;
@@ -601,7 +699,7 @@
   flex-wrap: wrap;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .donor-consent-row {
     flex-direction: column;
   }
@@ -628,10 +726,9 @@
 .adulteration-body {
   display: flex;
 
-}
+} */
 
-/* Make columns stack vertically on smaller screens */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .adulteration-body {
     flex-direction: column;
   }
@@ -652,13 +749,13 @@
   .btwo .row1 {
     flex-direction: column;
   }
-}
+} */
 
 .donorConcentToTest{
   display: flex;
 }
 
-@media screen and (max-width: 420px) {
+/* @media screen and (max-width: 420px) {
   .explabel{
     width: 30px !important;
     margin-left: 5px!important;
@@ -686,7 +783,7 @@
   .donorConcentToTest div{
     margin-left: 0px !important;
   }
-}
+} */
 
 
 .last-row{
@@ -694,7 +791,7 @@
   justify-content: space-between;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .last-row {
     flex-direction: column;
   }
@@ -703,7 +800,7 @@
   .part2,
   .part3 {
     width: 100% !important;
-    border-right: 1px solid black; /* reset part1's border */
+    border-right: 1px solid black; 
   }
 
   .last-row input[type="text"],
@@ -727,7 +824,7 @@
     display: block;
     margin-top: 5px;
   }
-}
+} */
 
 /* ========================================== COC Form  ============================================= */
 
@@ -739,6 +836,9 @@
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin: 0 auto;
+}
+.box{
+  width: 100%;
 }
 
 @keyframes spin {
@@ -754,15 +854,11 @@
   text-overflow: ellipsis;
   vertical-align: middle;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .ellipsis {
-    max-width: 100px; /* adjust based on your layout */
-  }
-}
-
-
-
-
+    max-width: 100px; 
+    }
+} */
 
 
 
@@ -790,15 +886,15 @@
     margin-bottom: 10px;
   }
 
-  .donor,
+
   .ant-form-item-control-input-content {
     display: flex;
     flex-direction: column;
   }
-  .donor{
+  /* .donor{
     justify-content: flex-start;
     align-items: flex-start;
-  }
+  } */
 
   .ant-upload {
     width: 100% !important;
@@ -812,4 +908,12 @@
     width: 100% !important;
   } */
 }
+
+
+@media (max-width: 340px) {
+  .donor label{
+    width: auto;
+  }
+}
+
 

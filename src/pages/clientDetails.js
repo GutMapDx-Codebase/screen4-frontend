@@ -39,15 +39,17 @@ function Screen4Details() {
         border: "1px solid #ccc",
         padding: "20px",
         boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+        width:"60%"
       }}
-    >
+      >
       <canvas
         ref={canvasRef}
         style={{
-          width: "400px",
+          // width: "400px",
           height: "200px",
           border: "1px solid #ccc",
           cursor: "crosshair",
+          width:"100%",
         }}
         onMouseDown={startDrawing}
         onMouseMove={draw}
@@ -351,7 +353,7 @@ function Screen4Details() {
             : '',
           reasonForTest: data.data.reasonForTest,
         }));
-        
+
 
 
       } catch (error) {
@@ -499,7 +501,7 @@ function Screen4Details() {
 
     try {
       const response = await fetch(apiUrl, {
-        method: id? "PUT" : "POST", // PUT for update, POST for add
+        method: id ? "PUT" : "POST", // PUT for update, POST for add
         headers: {
           "Content-Type": "application/json",
         },
@@ -510,7 +512,7 @@ function Screen4Details() {
 
       if (response.ok) {
         message.success(
-        id? "Form updated successfully!" : "Form submitted successfully!"
+          id ? "Form updated successfully!" : "Form submitted successfully!"
         );
       } else {
         message.error(result.message || "Failed to process form.");
@@ -563,28 +565,28 @@ function Screen4Details() {
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         >
-           <Tooltip title="Back">
-                <div
-                  onClick={() => navigate('/jobrequests')}
-                  style={{
-                    cursor: 'pointer',
-                    display: 'inline-block',
-                    padding: '5px',
-                    borderRadius: '4px',
-                    transition: 'background-color 0.3s ease',
-                  }}
-                  className="back-btn"
-                >
-                  <img
-                  className="backbtnimg"
-                    src="/backbtn.png"
-                    alt="Back"
-                    style={{ width: '20px', marginTop: '25px' }}
-                  />
-                </div>
-              </Tooltip>
+          <Tooltip title="Back">
+            <div
+              onClick={() => navigate('/jobrequests')}
+              style={{
+                cursor: 'pointer',
+                display: 'inline-block',
+                padding: '5px',
+                borderRadius: '4px',
+                transition: 'background-color 0.3s ease',
+              }}
+              className="back-btn"
+            >
+              <img
+                className="backbtnimg"
+                src="/backbtn.png"
+                alt="Back"
+                style={{ width: '20px', marginTop: '25px' }}
+              />
+            </div>
+          </Tooltip>
           <h2
-          className="jobrequestformtitle"
+            className="jobrequestformtitle"
             style={{
               textAlign: "center",
               color: "#80c209",
@@ -601,6 +603,7 @@ function Screen4Details() {
               className="inputstyle"
               type="text"
               name="donorName"
+              style={{ marginLeft: '0px' }}
               value={formData.donorName}
               onChange={handleChange}
               placeholder="Enter Donor's Name"
@@ -628,7 +631,9 @@ function Screen4Details() {
           >
             <div className="donor">
               {/* GCAA LIC No */}
-              <label style={{ width: "180px" }}>
+              <label
+              // style={{ width: "180px" }}
+              >
                 CAA LIC No{" "}
                 <span style={{ fontSize: "10px" }}>(if applicable)</span>:
               </label>
@@ -639,7 +644,7 @@ function Screen4Details() {
                 value={formData.gcalicno}
                 placeholder="Enter CAA LIC No"
                 onChange={handleChange}
-                style={{ width: "39%" }}
+              // style={{ width: "39%" }}
               />
             </div>
             <div className="donor">
@@ -651,7 +656,7 @@ function Screen4Details() {
                 name="dob"
                 value={formData.dob}
                 onChange={handleChange}
-                style={{ width: "99%" }}
+                // style={{ width: "99%" }}
                 required
               />
             </div>
@@ -664,10 +669,15 @@ function Screen4Details() {
             <div className="inner1" style={{}}>
               <div className="donor">
                 {/* Company Name */}
-                <label style={{ width: "137px" }}>Company Name</label>
+                <label
+                // style={{ width: "137px" }}
+                >Company Name</label>
                 <input
                   className="inputstyle"
-                  style={{ marginLeft: "15px", width: "190px" }}
+                  style={{
+                    //  marginLeft: "15px", 
+                    //  width: "190px" 
+                  }}
                   type="text"
                   name="companyName"
                   value={formData.companyName}
@@ -757,7 +767,7 @@ function Screen4Details() {
                 F
               </label>
             </div>
-              {/* Reason for Test */}
+            {/* Reason for Test */}
             {/* <div className="inner2" style={{ marginLeft: "45px" }}>
               <label style={{ marginBottom: "20px", display: "block" }}>
                 Reason for Test
@@ -814,24 +824,24 @@ function Screen4Details() {
               </div>
             </div> */}
             <div className="inner2" style={{ marginLeft: "45px" }}>
-  <label className="reasonlabel" style={{ marginBottom: "10px", display: "block", fontWeight: "bold" }}>
-    Reason for Test
-  </label>
-  <div className="reason-radio-group">
-    {["Pre-Employment", "Random", "For Cause", "Follow-up"].map((reason) => (
-      <label key={reason}>
-        <input
-          type="radio"
-          name="reasonForTest"
-          value={reason}
-          checked={formData.reasonForTest === reason}
-          onChange={handleChange}
-        />
-        {reason}
-      </label>
-    ))}
-  </div>
-</div>
+              <label className="reasonlabel" style={{ marginBottom: "10px", display: "block", fontWeight: "bold" }}>
+                Reason for Test
+              </label>
+              <div className="reason-radio-group">
+                {["Pre-Employment", "Random", "For Cause", "Follow-up"].map((reason) => (
+                  <label key={reason}>
+                    <input
+                      type="radio"
+                      name="reasonForTest"
+                      value={reason}
+                      checked={formData.reasonForTest === reason}
+                      onChange={handleChange}
+                    />
+                    {reason}
+                  </label>
+                ))}
+              </div>
+            </div>
 
 
 
@@ -840,7 +850,7 @@ function Screen4Details() {
                 {/* BAR CODE NUMBER */}
                 <label>BAR CODE NUMBER</label>
                 <input
-                  style={{ width: "35%", marginLeft: "0px" }}
+                  // style={{ width: "35%", marginLeft: "0px" }}
                   className="inputstyle"
                   type="number"
                   name="barcodeno"
@@ -855,7 +865,7 @@ function Screen4Details() {
                 <label>REF NO/JOB NO:</label>
                 <input
                   className="inputstyle"
-                  style={{ width: "35%", marginLeft: "0px" }}
+                  // style={{ width: "35%", marginLeft: "0px" }}
                   type="text"
                   name="refno"
                   value={formData.refno}
@@ -866,7 +876,9 @@ function Screen4Details() {
               <hr></hr>
               <div className="donor">
                 {/* DATE OF TEST: */}
-                <label style={{ width: "180px" }}>DATE OF TEST:</label>
+                <label
+                // style={{ width: "180px" }}
+                >DATE OF TEST:</label>
                 {/* <input
                   className="inputstyle"
                   style={{ width: "36%", marginLeft: "0px" }}
@@ -878,7 +890,7 @@ function Screen4Details() {
                 /> */}
                 <input
                   className="inputstyle"
-                  style={{ width: "36%", marginLeft: "0px" }}
+                  // style={{ width: "36%", marginLeft: "0px" }}
                   type="date"
                   name="dateoftest"
                   value={formData.dateoftest ? new Date(formData.dateoftest).toISOString().split("T")[0] : ""}
@@ -901,7 +913,7 @@ function Screen4Details() {
             <div
               class="second-container-part1"
               style={{
-                width: "35.5%",
+                // width: "35.5%",
                 border: "1px solid black",
                 padding: "10px",
               }}
@@ -920,7 +932,7 @@ function Screen4Details() {
                 }}
               >
                 <label
-                className="yesnolabel"
+                  className="yesnolabel"
                   style={{
                     marginRight: "10px",
 
@@ -938,10 +950,10 @@ function Screen4Details() {
                   />
                 </label>
                 <label
-                className="yesnolabel"
+                  className="yesnolabel"
                   style={{
                     marginRight: "10px",
-      
+
                     fontSize: "14px",
                   }}
                 >
@@ -1032,8 +1044,8 @@ function Screen4Details() {
                   style={{
                     fontSize: "12px",
                     fontWeight: "bold",
-                    marginLeft: "10px",
-                    marginRight: "10px",
+                    // marginLeft: "10px",
+                    // marginRight: "10px",
                     margin: "0px",
                   }}
                 >
@@ -1054,7 +1066,7 @@ function Screen4Details() {
             <div
               class="second-container-part2"
               style={{
-                width: "58.8%",
+                // width: "58.8%",
                 border: "1px solid black",
                 padding: "10px",
               }}
@@ -1080,7 +1092,10 @@ function Screen4Details() {
                 </p>
                 <div className="donor">
                   <label
-                    style={{ width: "45px", fontSize: "12px", margin: "0px" }}
+                    style={{
+                      //  width: "45px", 
+                      fontSize: "12px", margin: "0px"
+                    }}
                   >
                     Test 1.
                   </label>
@@ -1091,7 +1106,10 @@ function Screen4Details() {
                     value={formData.test1}
                     placeholder=""
                     onChange={handleChange}
-                    style={{ width: "85px", margin: "0px" }}
+                    style={{
+                      // width: "85px",
+                      margin: "0px"
+                    }}
                     required
                   />
                 </div>
@@ -1099,10 +1117,10 @@ function Screen4Details() {
                   {/* Date of Birth */}
                   <label
                     style={{
-                      width: "25px",
+                      // width: "25px",
                       fontSize: "12px",
-                      marginLeft: "10px",
-                      marginRight: "-10px",
+                      // marginLeft: "10px",
+                      // marginRight: "-10px",
                     }}
                   >
                     BrAC Result
@@ -1113,7 +1131,7 @@ function Screen4Details() {
                     name="test1BaracResult1"
                     value={formData.test1BaracResult1}
                     onChange={handleChange}
-                    style={{ width: "69%" }}
+                    // style={{ width: "69%" }}
                     required
                   />
                 </div>
@@ -1121,10 +1139,10 @@ function Screen4Details() {
                   {/* Date of Birth */}
                   <label
                     style={{
-                      width: "25px",
+                      // width: "25px",
                       fontSize: "12px",
-                      marginLeft: "10px",
-                      marginRight: "-10px",
+                      // marginLeft: "10px",
+                      // marginRight: "-10px",
                     }}
                   >
                     BrAC Result
@@ -1135,11 +1153,11 @@ function Screen4Details() {
                     name="test1BaracResult2"
                     value={formData.test1BaracResult2}
                     onChange={handleChange}
-                    style={{ width: "69%" }}
+                    // style={{ width: "69%" }}
                     required
                   />
                 </div>
-                <p style={{ paddingLeft: "10px" }}>%</p>
+                <p style={{ paddingLeft: "10px" }}></p>
               </div>
               <div
                 className="second-row"
@@ -1157,7 +1175,10 @@ function Screen4Details() {
                 </p>
                 <div className="donor">
                   <label
-                    style={{ width: "45px", fontSize: "12px", margin: "0px" }}
+                    style={{
+                      //  width: "45px",
+                      fontSize: "12px", margin: "0px"
+                    }}
                   >
                     Test 2.
                   </label>
@@ -1168,7 +1189,10 @@ function Screen4Details() {
                     value={formData.test2}
                     placeholder=""
                     onChange={handleChange}
-                    style={{ width: "85px", margin: "0px" }}
+                    style={{
+                      //  width: "85px",
+                      margin: "0px"
+                    }}
                     required
                   />
                 </div>
@@ -1176,10 +1200,10 @@ function Screen4Details() {
                   {/* Date of Birth */}
                   <label
                     style={{
-                      width: "25px",
+                      // width: "25px",
                       fontSize: "12px",
-                      marginLeft: "10px",
-                      marginRight: "-10px",
+                      // marginLeft: "10px",
+                      // marginRight: "-10px",
                     }}
                   >
                     BrAC Result
@@ -1190,7 +1214,7 @@ function Screen4Details() {
                     name="test2BaracResult1"
                     value={formData.test2BaracResult1}
                     onChange={handleChange}
-                    style={{ width: "69%" }}
+                    // style={{ width: "69%" }}
                     required
                   />
                 </div>
@@ -1198,10 +1222,10 @@ function Screen4Details() {
                   {/* Date of Birth */}
                   <label
                     style={{
-                      width: "25px",
+                      // width: "25px",
                       fontSize: "12px",
-                      marginLeft: "10px",
-                      marginRight: "-10px",
+                      // marginLeft: "10px",
+                      // marginRight: "-10px",
                     }}
                   >
                     BrAC Result
@@ -1212,21 +1236,21 @@ function Screen4Details() {
                     name="test2BaracResult2"
                     value={formData.test2BaracResult2}
                     onChange={handleChange}
-                    style={{ width: "69%" }}
+                    // style={{ width: "69%" }}
                     required
                   />
                 </div>
-                <p style={{ paddingLeft: "10px" }}>%</p>
+                <p style={{ paddingLeft: "10px" }}></p>
               </div>
               <div
                 className="second-row"
-                style={{ display: "flex", justifyContent: "space-evenly" }}
+                style={{ display: "flex" }}
               >
                 <div className="donor">
                   {/* GCAA LIC No */}
                   <label
                     style={{
-                      width: "130px",
+                      //// width: "130px",
                       fontSize: "11px",
                       fontWeight: "bold",
                     }}
@@ -1240,7 +1264,7 @@ function Screen4Details() {
                     value={formData.collectorName}
                     placeholder=""
                     onChange={handleChange}
-                    style={{ width: "142px", margin: "0px" }}
+                    // style={{ width: "142px", margin: "0px" }}
                     required
                   />
                 </div>
@@ -1248,11 +1272,11 @@ function Screen4Details() {
                   {/* Date of Birth */}
                   <label
                     style={{
-                      width: "25px",
+                      // width: "25px",
                       fontSize: "12px",
                       fontWeight: "bold",
-                      marginLeft: "31px",
-                      marginRight: "10px",
+                      // marginLeft: "31px",
+                      // marginRight: "10px",
                     }}
                   >
                     Remarks
@@ -1263,20 +1287,20 @@ function Screen4Details() {
                     name="collectorRemarks"
                     value={formData.collectorRemarks}
                     onChange={handleChange}
-                    style={{ width: "69%" }}
+                    // style={{ width: "69%" }}
                     required
                   />
                 </div>
               </div>
               <div
                 className="second-row"
-                style={{ display: "flex", justifyContent: "space-around" }}
+              // style={{ display: "flex", justifyContent: "space-around" }}
               >
                 <div className="donor">
                   {/* GCAA LIC No */}
                   <label
                     style={{
-                      width: "130px",
+                      //// width: "130px",
                       fontSize: "11px",
                       fontWeight: "bold",
                     }}
@@ -1311,7 +1335,8 @@ function Screen4Details() {
                     placeholder=""
                     onChange={handleChange}
                     style={{
-                      width: "152px", margin: "0px", cursor: "pointer",
+                      // width: "152px",
+                      margin: "0px", cursor: "pointer",
                       backgroundImage: `url(${formData.collectorSignature})`,
                       backgroundSize: "contain",
                       backgroundRepeat: "no-repeat",
@@ -1327,11 +1352,11 @@ function Screen4Details() {
                   {/* Date of Birth */}
                   <label
                     style={{
-                      width: "25px",
+                      // width: "25px",
                       fontSize: "12px",
                       fontWeight: "bold",
-                      marginLeft: "10px",
-                      marginRight: "10px",
+                      // marginLeft: "10px",
+                      // marginRight: "10px",
                     }}
                   >
                     Date
@@ -1342,7 +1367,7 @@ function Screen4Details() {
                     name="collectorDate"
                     value={formData.collectorDate}
                     onChange={handleChange}
-                    style={{ width: "69%" }}
+                    // style={{ width: "69%" }}
                     required
                   />
                 </div>
@@ -1376,7 +1401,7 @@ function Screen4Details() {
                   style={{
                     fontSize: "14px",
                     fontWeight: "bold",
-                    width: "120px",
+                    // width: "120px",
                   }}
                 >
                   Donor Consent{" "}
@@ -1399,7 +1424,7 @@ function Screen4Details() {
                   placeholder=""
                   onClick={() => { openSignaturePad(); setisconcentOpen(true) }}
                   style={{
-                    width: "156px",
+                    // width: "156px",
                     margin: "0px",
                     cursor: "pointer",
                     backgroundImage: `url(${formData.donorConcent})`,
@@ -1426,9 +1451,9 @@ function Screen4Details() {
                 class="box"
                 style={{
                   border: "1px solid black",
-                  marginLeft: "15px",
+                  // marginLeft: "15px",
                   padding: "3px",
-                  width: "90%",
+                  // width: "90%",
                 }}
               >
                 <p
@@ -1444,13 +1469,13 @@ function Screen4Details() {
                 </p>
                 <div
                   className="second-row"
-                  style={{ display: "flex", justifyContent: "space-around" }}
+                // style={{ display: "flex", justifyContent: "space-around" }}
                 >
                   <div className="donor">
                     {/* GCAA LIC No */}
                     <label
                       style={{
-                        width: "130px",
+                        // width: "130px",
                         fontSize: "11px",
                         fontWeight: "bold",
                       }}
@@ -1468,44 +1493,44 @@ function Screen4Details() {
                       required
                     /> */}
                     <input
-                  className="inputstyle"
-                  type="text"
-                  name="donorDeclaration"
-                  value=""
-                  placeholder=""
-                  onClick={() => { openSignaturePad(); setIsdeclarationopen(true) }}
-                  style={{
-                    width: "156px",
-                    margin: "0px",
-                    cursor: "pointer",
-                    backgroundImage: `url(${formData.donorDeclaration})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    height: "30px", // Adjust height to fit the signature image
-                  }}
-                  readOnly
-                />
-                {isError && isError === 'donorDeclaration' && (
-                  <p style={{ color: "red", padding: "5px", fontSize: "12px", marginTop: "5px" }}>
-                    Please fill donor signature
-                  </p>
-                )}
+                      className="inputstyle"
+                      type="text"
+                      name="donorDeclaration"
+                      value=""
+                      placeholder=""
+                      onClick={() => { openSignaturePad(); setIsdeclarationopen(true) }}
+                      style={{
+                        width: "156px",
+                        margin: "0px",
+                        cursor: "pointer",
+                        backgroundImage: `url(${formData.donorDeclaration})`,
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        height: "30px", // Adjust height to fit the signature image
+                      }}
+                      readOnly
+                    />
+                    {isError && isError === 'donorDeclaration' && (
+                      <p style={{ color: "red", padding: "5px", fontSize: "12px", marginTop: "5px" }}>
+                        Please fill donor signature
+                      </p>
+                    )}
 
 
-              </div>
-              {isSignaturePadOpen && declarationOpen && (
-                pad("donorDeclaration")
-              )}
+                  </div>
+                  {isSignaturePadOpen && declarationOpen && (
+                    pad("donorDeclaration")
+                  )}
 
                   <div className="donor">
                     <label
                       style={{
-                        width: "25px",
+                        // width: "25px",
                         fontSize: "12px",
                         fontWeight: "bold",
-                        marginLeft: "10px",
-                        marginRight: "10px",
+                        // marginLeft: "10px",
+                        // marginRight: "10px",
                       }}
                     >
                       Date
@@ -1516,7 +1541,10 @@ function Screen4Details() {
                       name="donorConcentDate"
                       value={formData.donorConcentDate}
                       onChange={handleChange}
-                      style={{ width: "69%", height: "5px" }}
+                      style={{
+                        //  width: "69%",
+                        height: "5px"
+                      }}
                       required
                     />
                   </div>
@@ -1713,35 +1741,35 @@ function Screen4Details() {
               </table>
             </tr> */}
 
-<thead>
-  <h4>Test Details</h4>
-  <tr>
-    <th>Test Method</th>
-    <th>Technology</th>
-    <th>Cut Off Level</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td style={{ border: "1px solid black", padding: "8px" }}>
-      {formData.testMethods?.join(', ') || 'N/A'}
-    </td>
-    <td style={{ border: "1px solid black", padding: "8px" }}>
-      {formData.testingTechnology?.join(', ') || 'N/A'}
-    </td>
-    <td style={{ border: "1px solid black", padding: "8px" }}>
-      {formData.cutOffLevels || 'N/A'}
-    </td>
-  </tr>
-</tbody>
+            <thead>
+              <h4>Test Details</h4>
+              <tr>
+                <th>Test Method</th>
+                <th>Technology</th>
+                <th>Cut Off Level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {formData.testMethods?.join(', ') || 'N/A'}
+                </td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {formData.testingTechnology?.join(', ') || 'N/A'}
+                </td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {formData.cutOffLevels || 'N/A'}
+                </td>
+              </tr>
+            </tbody>
 
           </table>
           <div class="row5">
             <div
-              class="head"
+              className="head"
               style={{
-                border: "1px solid black",
-                borderBottom: "none",
+                // border: "1px solid black",
+                // borderBottom: "none",
                 width: "98.7%",
                 height: "30px",
                 fontSize: "15px",
@@ -1751,9 +1779,9 @@ function Screen4Details() {
             >
               Adulteration Check
             </div>
-            <div class="body" className="adulteration-body">
+            <div className="adulteration-body">
               <div
-                class="bone"
+                className="bone"
                 style={{
                   border: "1px solid black",
                   borderRight: "none",
@@ -1765,7 +1793,7 @@ function Screen4Details() {
                   {/* GCAA LIC No */}
                   <label
                     style={{
-                      width: "130px",
+                      width: "40%",
                       fontSize: "13px",
                       fontWeight: "bold",
                     }}
@@ -1787,7 +1815,7 @@ function Screen4Details() {
                   {/* GCAA LIC No */}
                   <label
                     style={{
-                      width: "130px",
+                      width: "40%",
                       fontSize: "13px",
                       fontWeight: "bold",
                     }}
@@ -1810,15 +1838,15 @@ function Screen4Details() {
                   Temperature 32 - 38˚{" "}
                   <label
                     style={{
-                      marginRight: "10px",
-                      marginLeft: "10px",
+                      // marginRight: "10px",
+                      // marginLeft: "10px",
                       width: "100px",
                       fontSize: "14px",
                     }}
                   >
                     Yes
                     <input
-                    className="radioinput"
+                      className="radioinput"
                       type="radio"
                       name="temperature"
                       value="Yes"
@@ -1835,7 +1863,7 @@ function Screen4Details() {
                   >
                     No
                     <input
-                     className="radioinput"
+                      className="radioinput"
                       type="radio"
                       name="temperature"
                       value="No"
@@ -1845,28 +1873,28 @@ function Screen4Details() {
                   </label>
                 </h5>
               </div>
-              <div class="btwo myb" style={{ width: "40%", height: "100px" }}>
+              <div class="btwo myb" style={{ minHeight: "100px" }}>
                 <div
                   class="row1"
-                  style={{ height: "50px", borderBottom: "1px solid black" }}
+                  style={{ minHeight: "50px", borderBottom: "1px solid black" }}
                 >
-                  <div class="" style={{ display: "flex" }}>
+                  <div class="lotexprow" style={{ display: "flex" }}>
                     <div
                       class=""
                       style={{
-                        height: "50px",
+                        minHeight: "50px",
                         width: "50%",
-                        borderRight: "1px solid black",
+                        // borderRight: "1px solid black",
                       }}
                     >
                       <div
                         className="donor"
-                        style={{ marginLeft: "5px", marginTop: "10px" }}
+                        style={{ marginLeft: "15px", marginTop: "10px" }}
                       >
                         {/* GCAA LIC No */}
                         <label
                           style={{
-                            width: "50px",
+                            width: "20%",
                             fontSize: "13px",
                             fontWeight: "bold",
                           }}
@@ -1889,16 +1917,20 @@ function Screen4Details() {
                         />
                       </div>
                     </div>
-                    <div class="" style={{ height: "50px", width: "50%" }}>
+                    <div class="" style={{ minHeight: "50px", width: "50%" }}>
                       <div
                         className="donor"
-                        style={{ marginLeft: "10px", marginTop: "10px" }}
+                        style={{
+                          marginLeft: "15px",
+                          // marginLeft: "10px", 
+                          marginTop: "10px"
+                        }}
                       >
                         {/* GCAA LIC No */}
-                        <label 
-                        className="explabel"
+                        <label
+                          className="explabel"
                           style={{
-                            width: "71px",
+                            width: "20%",
                             fontSize: "13px",
                             fontWeight: "bold",
                           }}
@@ -1923,7 +1955,7 @@ function Screen4Details() {
                     </div>
                   </div>
                 </div>
-                <div className="row2" style={{ height: "50px" }}>
+                <div className="row2" style={{ minHeight: "50px" }}>
                   <h5 style={{ marginLeft: "5px", marginTop: "10px" }}>
                     Adulteration Test Passed
                     <label
@@ -1968,9 +2000,9 @@ function Screen4Details() {
                 class="bthree"
                 style={{
                   border: "1px solid black",
-                  borderLeft: "none",
-                  width: "30%",
-                  height: "100px",
+                  // borderLeft: "none",
+                  // width: "30%",
+                  minHeight: "100px",
                 }}
               >
                 <div
@@ -1984,9 +2016,9 @@ function Screen4Details() {
                 >
                   {/* GCAA LIC No */}
                   <label
-                  className="remarks"
+                    className="remarks"
                     style={{
-                      width: "130px",
+                      //// width: "130px",
                       fontSize: "13px",
                       fontWeight: "bold",
                     }}
@@ -1994,14 +2026,17 @@ function Screen4Details() {
                     Remarks / Drug Test Result
                   </label>
                   <input
-                  
+
                     className="inputstyle remarksinput"
                     type="text"
                     name="adulterationRemarks"
                     value={formData.adulterationRemarks}
                     placeholder=""
                     onChange={handleChange}
-                    style={{ width: "192px", margin: "0px", height: "5px" }}
+                    style={{
+                      width: "50%",
+                      margin: "0px", height: "5px"
+                    }}
                     required
                   />
                 </div>
@@ -2009,122 +2044,7 @@ function Screen4Details() {
             </div>
           </div>
           <div style={{ overflowX: "auto" }}>
-            {/* <table
-              style={{
-                borderCollapse: "collapse",
-                width: "100%",
-                border: "1px solid black",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th
-                    colSpan="6"
-                    style={{ border: "1px solid black", padding: "8px" }}
-                  >
-                    Laboratory Tests (Please tick tests required)
-                  </th>
-                  <th
-                    colSpan="1"
-                    style={{ border: "1px solid black", padding: "8px" }}
-                  ></th>
-                  <th
-                    colSpan="1"
-                    style={{ border: "1px solid black", padding: "8px" }}
-                  >
-                    Screen
-                  </th>
-                  <th
-                    colSpan="1"
-                    style={{ border: "1px solid black", padding: "8px" }}
-                  >
-                    Confirm
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ["", "screen", "confirm", "", "Methamphetamine"],
-                  ["Alcohol", "", "", "Cocaine", "Morphine"],
-                  ["Amphetamines", "", "", "Ketamine", "Network Rail Std"],
-                  [
-                    "Benzodiazepines",
-                    "",
-                    "",
-                    "Maritime Std",
-                    "Opiates",
-                  ],
-                  ,
-                  ["Buprenorphine", "", "", "MDMA", "SSRI"],
-                  ["Blood", "", "", "Methadone", "TCA"],
-                  ["Other (Please Specify)", "", "", "", "THC"],
-                ].map(([leftTest, a, b, rightTest, c], index) => (
-                  <tr key={index}>
-                    <td style={{ border: "1px solid black", padding: "8px" }}>
-                      {leftTest}
-                    </td>
-                    <td style={{ border: "1px solid black", padding: "8px" }}>
-                      {a}
-                      {index !== 0 && (<input
-                              type="checkbox"
-                              name={`${leftTest.split(" ")[0]}Screen`}
-                              checked={formData[`${leftTest.split(" ")[0]}Screen`] ==='true'}
-                              onChange={handleChange}
-                              />)}
-                    </td>
-                    <td style={{ border: "1px solid black", padding: "8px" }}>
-                      {b}
-                      {index !== 0 && (<input
-                              type="checkbox"
-                              name={`${leftTest.split(" ")[0]}Confirm`}
-                              checked={formData[`${leftTest.split(" ")[0]}Confirm`] ==='true'}
-                              onChange={handleChange}
-                              />)}
-                    </td>
-                    <td style={{ border: "1px solid black", padding: "8px" }}>
-                      {rightTest}
-                    </td>
-                    <td style={{ border: "1px solid black", padding: "8px" }}>
-                      {a}
-                      {index !== 0 &&index !== 7 && (<input
-                              type="checkbox"
-                              name={`${rightTest.split(" ")[0]}Screen`}
-                              checked={formData[`${rightTest.split(" ")[0]}Screen`] ==='true'}
-                              onChange={handleChange}
-                              />)}
-                    </td>
-                    <td style={{ border: "1px solid black", padding: "8px" }}>
-                      {b}
-                      {index !== 0 && index !== 7 &&(<input
-                              type="checkbox"
-                              name={`${rightTest.split(" ")[0]}Confirm`}
-                              checked={formData[`${rightTest.split(" ")[0]}Confirm`] ==='true'}
-                              onChange={handleChange}
-                              />)}
-                    </td>
-                    <td style={{ border: "1px solid black", padding: "8px" }}>
-                      {c}
-                    </td>
-                    <td
-                      style={{ border: "1px solid black", padding: "8px" }}
-                    >{<input
-                      type="checkbox"
-                      name={`${c.split(" ")[0]}Screen`}
-                      checked={formData[`${c.split(" ")[0]}Screen`] ==='true'}
-                      onChange={handleChange}
-                      />}</td>
-                    <td
-                      style={{ border: "1px solid black", padding: "8px" }}
-                    >{<input
-                      type="checkbox"
-                      name={`${c.split(" ")[0]}Confirm`}
-                      checked={formData[`${c.split(" ")[0]}Confirm`]==='true'}
-                      onChange={handleChange}
-                      />}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table> */}
+
             <table
               style={{
                 borderCollapse: "collapse",
@@ -2274,7 +2194,7 @@ function Screen4Details() {
                     style={{
                       fontSize: "14px",
                       fontWeight: "bold",
-                      width: "60px",
+                      // width: "60px",
                     }}
                   >
                     Name{" "}
@@ -2290,20 +2210,20 @@ function Screen4Details() {
                     required
                   /> */}
                   <input
-              className="inputstyle"
-              type="text"
-              name="donorName"
-              value={formData.donorName}
-              onChange={handleChange}
-              placeholder="Enter Donor's Name"
-              required
-            />
+                    className="inputstyle"
+                    type="text"
+                    name="donorName"
+                    value={formData.donorName}
+                    onChange={handleChange}
+                    placeholder="Enter Donor's Name"
+                    required
+                  />
                 </div>
-                <div className="donor" style={{ marginLeft: "30px" }}>
+                <div className="donor" >
                   {/* GCAA LIC No */}
                   <label
                     style={{
-                      width: "80px",
+                      // width: "80px",
                       fontSize: "14px",
                       fontWeight: "bold",
                     }}
@@ -2339,7 +2259,9 @@ function Screen4Details() {
                     onChange={handleChange}
                     onClick={() => { openSignaturePad(); setIsDonorConcentOpen(true) }}
                     style={{
-                      width: "152px", margin: "0px", cursor: "pointer",
+                      // width: "152px",
+                      // marginLeft: "30px",
+                      cursor: "pointer",
                       backgroundImage: `url(${formData.donorCertificationSignature})`,
                       backgroundSize: "contain",
                       backgroundRepeat: "no-repeat",
@@ -2351,14 +2273,14 @@ function Screen4Details() {
                 {isSignaturePadOpen && donorConcentOpen && (
                   pad("donorCertificationSignature")
                 )}
-                <div className="donor" style={{ marginLeft: "30px" }}>
+                <div className="donor" >
                   <label
                     style={{
-                      width: "25px",
+                      // width: "25px",
                       fontSize: "14px",
                       fontWeight: "bold",
-                      marginLeft: "10px",
-                      marginRight: "10px",
+                      // marginLeft: "10px",
+                      // marginRight: "10px",
                     }}
                   >
                     Date
@@ -2369,7 +2291,7 @@ function Screen4Details() {
                     name="donorCertificationDate"
                     value={formatDate(formData.donorCertificationDate)}
                     onChange={handleChange}
-                    style={{ width: "69%" }}
+                    // style={{ width: "69%" }}
                     required
                   />
                 </div>
@@ -2404,7 +2326,7 @@ function Screen4Details() {
                     style={{
                       fontSize: "14px",
                       fontWeight: "bold",
-                      width: "60px",
+                      // width: "60px",
                     }}
                   >
                     Name{" "}
@@ -2416,15 +2338,18 @@ function Screen4Details() {
                     value={formData.collectorCertificationName}
                     placeholder=""
                     onChange={handleChange}
-                    style={{ margin: "0px", width: "150px" }}
+                    style={{
+                      margin: "0px",
+                      //  width: "150px"
+                    }}
                     required
                   />
                 </div>
-                <div className="donor" style={{ marginLeft: "30px" }}>
+                <div className="donor" >
                   {/* GCAA LIC No */}
                   <label
                     style={{
-                      width: "80px",
+                      // width: "80px",
                       fontSize: "14px",
                       fontWeight: "bold",
                     }}
@@ -2459,7 +2384,8 @@ function Screen4Details() {
                     onClick={() => { openSignaturePad(); setIsCollectorCerificationOpen(true) }}
                     onChange={handleChange}
                     style={{
-                      width: "152px", margin: "0px", cursor: "pointer",
+                      // width: "152px", 
+                      margin: "0px", cursor: "pointer",
                       backgroundImage: `url(${formData.collectorCertificationSignature})`,
                       backgroundSize: "contain",
                       backgroundRepeat: "no-repeat",
@@ -2471,14 +2397,16 @@ function Screen4Details() {
                 {isSignaturePadOpen && collectorCertificationOpen && (
                   pad("collectorCertificationSignature")
                 )}
-                <div className="donor" style={{ marginLeft: "30px" }}>
+                <div className="donor"
+
+                >
                   <label
                     style={{
-                      width: "25px",
+                      // width: "25px",
                       fontSize: "14px",
                       fontWeight: "bold",
-                      marginLeft: "10px",
-                      marginRight: "10px",
+                      // marginLeft: "10px",
+                      // marginRight: "10px",
                     }}
                   >
                     Date
@@ -2489,7 +2417,7 @@ function Screen4Details() {
                     name="collectorCertificationDate"
                     value={formData.collectorCertificationDate}
                     onChange={handleChange}
-                    style={{ width: "69%" }}
+                    // style={{ width: "69%" }}
                     required
                   />
                 </div>
@@ -2497,13 +2425,13 @@ function Screen4Details() {
             </div>
           </div>
           <div class="last-row">
-            <div class="part1" style={{ padding: "10px", width: "40%", border: "1px solid black", height: "130px", marginBottom: "20px", borderRight: "none" }}><h5 style={{ fontWeight: "bold", fontSize: "15px" }}>
+            <div class="part1" style={{ padding: "10px", border: "1px solid black", height: "130px", marginBottom: "20px", }}><h5 style={{ fontWeight: "bold", fontSize: "15px" }}>
               Received at Laboratory:
             </h5> <div className="donor" style={{ marginLeft: "5px" }}>
                 {/* GCAA LIC No */}
                 <label
                   style={{
-                    width: "130px",
+                    // width: "130px",
                     fontSize: "13px",
                     fontWeight: "bold",
                   }}
@@ -2525,7 +2453,7 @@ function Screen4Details() {
                 {/* GCAA LIC No */}
                 <label
                   style={{
-                    width: "130px",
+                    // width: "130px",
                     fontSize: "13px",
                     fontWeight: "bold",
                   }}
@@ -2547,7 +2475,7 @@ function Screen4Details() {
                 {/* GCAA LIC No */}
                 <label
                   style={{
-                    width: "130px",
+                    // width: "130px",
                     fontSize: "13px",
                     fontWeight: "bold",
                   }}
@@ -2566,7 +2494,7 @@ function Screen4Details() {
                 />
               </div>
             </div>
-            <div class="part2" style={{ width: "30%", border: "1px solid black", height: "150px", marginBottom: "20px", borderRight: "none" }}><h5 style={{ fontWeight: "bold", padding: "7px", paddingLeft: "12px", fontSize: "15px" }}>
+            <div class="part2" style={{  border: "1px solid black", height: "150px", marginBottom: "20px",  }}><h5 style={{ fontWeight: "bold", padding: "7px", paddingLeft: "12px", fontSize: "15px" }}>
               Specimen bottle seals intact
             </h5><div
               style={{
@@ -2577,14 +2505,14 @@ function Screen4Details() {
             >
                 <label
                   style={{
-                    marginRight: "10px",
-                    width: "50px",
+                    // marginRight: "10px",
+                    // width: "50px",
                     fontSize: "14px",
                   }}
                 >
                   Yes
                   <input
-                     className="radioyesno"
+                    className="radioyesno"
                     type="radio"
                     name="specimenBottle"
                     value="Yes"
@@ -2594,14 +2522,14 @@ function Screen4Details() {
                 </label>
                 <label
                   style={{
-                    marginRight: "10px",
-                    width: "50px",
+                    // marginRight: "10px",
+                    // width: "50px",
                     fontSize: "14px",
                   }}
                 >
                   No
                   <input
-                     className="radioyesno"
+                    className="radioyesno"
                     type="radio"
                     name="specimenBottle"
                     value="No"
@@ -2611,8 +2539,9 @@ function Screen4Details() {
                 </label>
                 <span
                   style={{
-                    marginLeft: "auto",
-                    width: "110px",
+                    // marginLeft: "auto",
+                    // width: "110px",
+                     width:"100%",
                     marginLeft: "0px",
                     fontSize: "14px",
                     cursor: "pointer",
@@ -2638,7 +2567,8 @@ function Screen4Details() {
                 </div>
               )}
             </div>
-            <div class="part3" style={{ width: "30%", border: "1px solid black", height: "150px", marginBottom: "20px" }}><h5 style={{ fontWeight: "bold", padding: "7px", paddingLeft: "12px", fontSize: "15px" }}>
+            <div class="part3" style={{   border: "1px solid black", height: "150px", marginBottom: "20px" }}>
+              <h5 style={{ fontWeight: "bold", padding: "7px", paddingLeft: "12px", fontSize: "15px" }}>
               Fatal Flaws
             </h5><div
               style={{
@@ -2649,14 +2579,14 @@ function Screen4Details() {
             >
                 <label
                   style={{
-                    marginRight: "10px",
-                    width: "50px",
+                    // marginRight: "10px",
+                    // width: "50px",
                     fontSize: "14px",
                   }}
                 >
                   Yes
                   <input
-                  className="radioyesno"
+                    className="radioyesno"
                     type="radio"
                     name="fatalFlaws"
                     value="Yes"
@@ -2666,8 +2596,8 @@ function Screen4Details() {
                 </label>
                 <label
                   style={{
-                    marginRight: "10px",
-                    width: "50px",
+                    // marginRight: "10px",
+                    // width: "50px",
                     fontSize: "14px",
                   }}
                 >
@@ -2683,8 +2613,9 @@ function Screen4Details() {
                 </label>
                 <span
                   style={{
-                    marginLeft: "auto",
-                    width: "110px",
+                    // marginLeft: "auto",
+                    // width: "110px",
+                    width:"100%",
                     marginLeft: "0px",
                     fontSize: "14px",
                     cursor: "pointer",
@@ -2716,7 +2647,7 @@ function Screen4Details() {
           {/* Submit Button */}
           {formData.isUpdated !== true ?
             (!isloading ? <button
-            className="createjob2"
+              className="createjob2"
               type="submit"
               style={{
                 width: "100%",

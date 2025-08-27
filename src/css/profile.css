@@ -279,14 +279,18 @@ position: relative;
         margin-top: 5px;
       }
       .inputstyle{
-        width: 78%;
+        /* width: 78%; */
+        width: 100%;
         padding: 10px;
-        margin-left:30px;
+        /* margin-left:30px; */
         border-radius: 5px;
-        border: 1px solid #19b0e6 
+        border: 1px solid #19b0e6;
+        min-width: 50px;
       }
       label{
-        width: 180px;
+        /* width: 180px; */
+        width: 100%;
+        min-width: 50px;
       }
       hr{
         background: black;

@@ -69,7 +69,6 @@ function JobRequestForm() {
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [isError, setIsError] = useState(false);
-  // const [formData, setFormData] = useState({ donorSignature: "" });
   const [isSignaturePadOpen, setIsSignaturePadOpen] = useState(false);
   const [donorOpen, setIsDonorOpen] = useState(false);
   const [donorConcentOpen, setIsDonorConcentOpen] = useState(false);
@@ -96,51 +95,6 @@ function JobRequestForm() {
       return;
     }
   }, [navigate]);
-
-  // useEffect(() => {
-  //   const fetchCustomers = async () => {
-  //     try {
-  //       const response = await axios.get(`${process.env.REACT_APP_API_URL}/getcustomers`);
-  //       const data = await response.data;
-
-  //       // Use a Set to track unique "name|email" combinations
-  //       const uniqueMap = new Map();
-
-  //       data.forEach((item) => {
-  //         const key = `${item.name}|${item.emails}`;
-  //         if (!uniqueMap.has(key)) {
-  //           uniqueMap.set(key, {
-  //             name: item.name,
-  //             email: item.emails,
-  //           });
-  //         }
-  //       });
-
-  //       setCustomers(Array.from(uniqueMap.values()));
-  //       const locationSet = new Map();
-
-  //     data.forEach((customer) => {
-  //       if (Array.isArray(customer.hqAddress)) {
-  //         customer.hqAddress.forEach((addr) => {
-  //           const key = `${addr.address}|${addr.contactEmail}`; // Avoid duplicates
-  //           if (!locationSet.has(key)) {
-  //             locationSet.set(key, {
-  //               address: addr.address,
-  //               ...addr,
-  //             });
-  //           }
-  //         });
-  //       }
-  //     });
-
-  //     setLocations(Array.from(locationSet.values())); // Final locations list
-  //     } catch (error) {
-  //       console.error("Failed to fetch customers", error);
-  //     }
-  //   };
-
-  //   fetchCustomers();
-  // }, []);
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -194,7 +148,6 @@ function JobRequestForm() {
     return match ? match[1] : null;
   };
 
-  // 🧠 Filter locations for selected customer
   useEffect(() => {
     if (!formData.customer) return;
 
@@ -208,10 +161,8 @@ function JobRequestForm() {
     }
   }, [formData.customer, customers]);
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prev) => ({ ...prev, [name]: value }));
-  // };
+
+  
   const handleAddComment = (field) => {
     const comment = prompt("Enter your comment:");
     if (comment) {
@@ -222,7 +173,6 @@ function JobRequestForm() {
     }
   };
   const generateUniqueJobRef = async () => {
-    // 1. Fetch all existing job references
     const response = await fetch(`${process.env.REACT_APP_API_URL}/getreferenceno`);
     const existingRefs = await response.json();
 
@@ -417,17 +367,6 @@ function JobRequestForm() {
     return today.toLocaleDateString("en-GB", options);
   };
 
-  // const handleChange = async (e) => {
-  //   const { name, value, type, checked } = e.target;
-  //   setFormData((prevData) => {
-  //       const updatedData = {
-  //           ...prevData,
-  //           [name]: type === "checkbox" ? checked : value.toString(),
-  //       };
-  //       console.log(updatedData); // Logs the updated state immediately
-  //       return updatedData;
-  //   });
-  // };
 
   const handleChange = async (e) => {
     const { name, value, type, checked } = e.target;
@@ -456,34 +395,8 @@ function JobRequestForm() {
     });
   };
 
-  // console.log("Form Data Submitted: ", formData);
-  // if (!formData.reasonForTest) {
-  //   setIsError("reasonForTest");
-  //   message.warning("Please select a reason for the test");
-  // }
-  // else if (!formData.gender) {
-  //   setIsError("gender");
-  //   message.warning("Please select gender");
-  // }
-  // else if (!formData.alcohoDeclaration) {
-  //   setIsError("alcohoDeclaration");
-  //   message.warning("Please answer RESIDUAL MOUTH ALCOHOL DECLARATION");
-  // }
-  // else if (!formData.donorSignature) {
-  //   setIsError("donorSignature");
-  //   message.warning("Please fill donor signature");
-  // }
-  // else if (!formData.collectorSignature) {
-  //   setIsError("collectorSignature");
-  //   message.warning("Please fill collector signature");
-  // }
-  // else if (!formData.collectorCertificationSignature) {
-  //   setIsError("collectorCertificationSignature");
-  //   message.warning("Please fill collector certification signature");
-  // }
 
-  // else {
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
@@ -963,261 +876,7 @@ function JobRequestForm() {
             TIMESHEET (Collection Officer to complete, Onsite Contact to sign)
           </h4>
 
-          {/* <form onSubmit={handleSubmit}>
-            <table border="1">
-              <tbody>
-                <tr>
-                  <td>Date</td>
-                  <td>
-                    <input
-                      type="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleChange}
-                    />
-                  </td>
-                  <td>Collection Officer's Name</td>
-                  <td>
-                    <input
-                      type="text"
-                      name="collectionOfficerName"
-                      value={formData.collectionOfficerName}
-                      onChange={handleChange}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Arrival Time</td>
-                  <td>
-                    <input
-                      type="time"
-                      name="arrivalTime"
-                      value={formData.arrivalTime}
-                      onChange={handleChange}
-                    />
-                  </td>
-                  <td>Departure Time</td>
-                  <td>
-                    <input
-                      type="time"
-                      name="departureTime"
-                      value={formData.departureTime}
-                      onChange={handleChange}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Waiting Time</td>
-                  <td>
-                    <input
-                      type="text"
-                      name="waitingTime"
-                      value={formData.waitingTime}
-                      onChange={handleChange}
-                    />
-                  </td>
-                  <td>Date & Time Samples Mailed</td>
-                  <td>
-                    <input
-                      type="datetime-local"
-                      name="samplesMailed"
-                      value={formData.samplesMailed}
-                      onChange={handleChange}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Mileage</td>
-                  <td>
-                    <input
-                      type="number"
-                      name="mileage"
-                      value={formData.mileage}
-                      onChange={handleChange}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Number of Breath Alcohol Tests Completed</td>
-                  <td>
-                    <input
-                      type="number"
-                      name="breathAlcoholTestsCompleted"
-                      value={formData.breathAlcoholTestsCompleted}
-                      onChange={handleChange}
-                    />
-                  </td>
-                  <td>Number of Drug Tests Completed</td>
-                  <td>
-                    <input
-                      type="number"
-                      name="drugTestsCompleted"
-                      value={formData.drugTestsCompleted}
-                      onChange={handleChange}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Number of ‘Non Zero’ Breath Alcohol Tests</td>
-                  <td>
-                    <input
-                      type="number"
-                      name="nonZeroBreathAlcoholTests"
-                      value={formData.nonZeroBreathAlcoholTests}
-                      onChange={handleChange}
-                    />
-                  </td>
-                  <td>Number of Non-Negative Samples Sent to Laboratory</td>
-                  <td>
-                    <input
-                      type="number"
-                      name="nonNegativeSamples"
-                      value={formData.nonNegativeSamples}
-                      onChange={handleChange}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan="4">
-                    <strong>ONSITE CONTACT SIGNATURE</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Notes (e.g. travel/donor/facility issues)</td>
-                  <td colSpan="3">
-                    <textarea
-                      name="notes"
-                      value={formData.notes}
-                      onChange={handleChange}
-                    ></textarea>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan="4">
-                    <strong>Facilities Check (tick box)</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan="4">
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="privateSecureRoom"
-                        checked={formData.facilities.privateSecureRoom}
-                        onChange={handleChange}
-                      />
-                      Private & Secure Room / Collection Area
-                    </label>
-                    <br />
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="wcFacilities"
-                        checked={formData.facilities.wcFacilities}
-                        onChange={handleChange}
-                      />
-                      Suitable WC Facilities, +1 Door Access/Egress
-                    </label>
-                    <br />
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="handWashing"
-                        checked={formData.facilities.handWashing}
-                        onChange={handleChange}
-                      />
-                      Suitable Hand Washing Facilities
-                    </label>
-                    <br />
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="securedWindows"
-                        checked={formData.facilities.securedWindows}
-                        onChange={handleChange}
-                      />
-                      Secured Windows if at Ground Level
-                    </label>
-                    <br />
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="emergencyExits"
-                        checked={formData.facilities.emergencyExits}
-                        onChange={handleChange}
-                      />
-                      Onsite Emergency Exits / Assembly Points
-                    </label>
-                    <br />
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="translatorRequired"
-                        checked={formData.facilities.translatorRequired}
-                        onChange={handleChange}
-                      />
-                      Translator (if required)
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan="4">
-                    <strong>COLLECTION OFFICER SIGNATURE</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Onsite Contact Signature</td>
-                  <td>
-                    <div class="">
-                
-                     <input
-                    className="inputstyle"
-                    type="text"
-                    name="onsiteSignature"
-                    value=""//{formData.onsiteSignature}
-                    placeholder=""
-                    onClick={() => openSignaturePad2("onsiteSignature")}
-                    onChange={handleChange}
-                    style={{ width: "152px", margin: "0px",cursor: "pointer",
-                      backgroundImage: `url(${formData.onsiteSignature})`,
-                      backgroundSize: "contain",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",height:"30px" }}
-         
-                  />
-                </div>
-              
-      {isSignaturePadOpen && pad(currentSignatureField)}
-
-                  </td>
-                  <td>Collection Officer Signature</td>
-                  <td>
-                    <div class="">
-                 
-                    <input
-                    className="inputstyle"
-                    type="text"
-                    name="officerSignature"
-                    value=""
-                    placeholder=""
-                    onClick={() => openSignaturePad2("officerSignature")}
-                    onChange={handleChange}
-                    style={{ width: "152px", margin: "0px",cursor: "pointer",
-                      backgroundImage: `url(${formData.officerSignature})`,
-                      backgroundSize: "contain",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",height:"30px" }}
-         
-                  />
-                </div>
-            {isSignaturePadOpen && pad(currentSignatureField)}
-
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </form> */}
-
+        
 <form onSubmit={handleSubmit}>
             <table border="1" className="customTable">
               <tbody>
