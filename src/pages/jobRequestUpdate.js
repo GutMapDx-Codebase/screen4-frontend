@@ -143,11 +143,15 @@ function JobRequestDetails() {
             height: "200px",
             border: "1px solid #ccc",
             cursor: "crosshair",
+            touchAction: "none",
           }}
           onMouseDown={startDrawing}
           onMouseMove={draw}
           onMouseUp={finishDrawing}
           onMouseLeave={finishDrawing}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         />
         <div style={{ marginTop: "10px" }}>
           <button
@@ -282,6 +286,40 @@ function JobRequestDetails() {
   };
 
   const finishDrawing = () => {
+    contextRef.current.closePath();
+    setIsDrawing(false);
+  };
+
+  const getTouchPos = (touchEvent) => {
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const touch = touchEvent.touches[0] || touchEvent.changedTouches[0];
+    const x = (touch.clientX - rect.left);
+    const y = (touch.clientY - rect.top);
+    return { x, y };
+  };
+
+  const handleTouchStart = (e) => {
+    if (!canvasRef.current || !contextRef.current) return;
+    e.preventDefault();
+    const { x, y } = getTouchPos(e);
+    contextRef.current.beginPath();
+    contextRef.current.moveTo(x, y);
+    setIsDrawing(true);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDrawing) return;
+    if (!canvasRef.current || !contextRef.current) return;
+    e.preventDefault();
+    const { x, y } = getTouchPos(e);
+    contextRef.current.lineTo(x, y);
+    contextRef.current.stroke();
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!canvasRef.current || !contextRef.current) return;
+    e.preventDefault();
     contextRef.current.closePath();
     setIsDrawing(false);
   };

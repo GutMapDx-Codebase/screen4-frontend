@@ -202,26 +202,20 @@ const limit = 10; // or whatever you want per page
     // } 
     if (tab === "Accepted"){
       filtered = client.filter((c) => {
-        // if (token === "dskgfsdgfkgsdfkjg35464154845674987dsf@53") {
-        //   return c.isAccepted && !c.isCompleted;
-        // }
         if (token === "collectorsdrfg&78967daghf#wedhjgasjdlsh6kjsdg") {
-          // return c.isAccepted && !c.isCompleted && c.acceptedBy.toString() === collectorId.toString();
-          return c.acceptedBy.toString() === collectorId.toString();
+          return String(c?.acceptedBy) === String(collectorId);
         }
+        // Admin view: accepted and not completed
+        return c?.isAccepted && !c?.isCompleted;
       });
-      return true;
     } 
     else if (tab === "Completed") {
       filtered = client.filter((c) =>{
-        // if (token === "dskgfsdgfkgsdfkjg35464154845674987dsf@53" || token === "clientdgf45sdgf@89756dfgdhg&%df") {
-        //   return c.isAccepted && c.isCompleted;
-        // }
         if (token === "collectorsdrfg&78967daghf#wedhjgasjdlsh6kjsdg") {
-          // return c.isAccepted && c.isCompleted && c.acceptedBy.toString() === collectorId;
-          return c.acceptedBy.toString() === collectorId;
+          return c?.isCompleted && String(c?.acceptedBy) === String(collectorId);
         }
-        return true;
+        // Admin/client view: accepted and completed
+        return c?.isAccepted && c?.isCompleted;
       })        
     }
     

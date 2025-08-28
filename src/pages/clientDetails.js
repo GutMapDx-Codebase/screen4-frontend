@@ -2550,7 +2550,7 @@ function Screen4Details() {
                 />
               </div>
             </div>
-            <div class="part2" style={{  border: "1px solid black", height: "150px", marginBottom: "20px",  }}><h5 style={{ fontWeight: "bold", padding: "7px", paddingLeft: "12px", fontSize: "15px" }}>
+            <div class="part2" style={{  border: "1px solid black", height: "150px", marginBottom: "20px",  }}><h5 style={{ fontWeight: "bold", padding: "7px", paddingLeft: "0px", fontSize: "15px" }}>
               Specimen bottle seals intact
             </h5><div
               style={{
@@ -2624,8 +2624,8 @@ function Screen4Details() {
               )}
             </div>
             <div class="part3" style={{   border: "1px solid black", height: "150px", marginBottom: "20px" }}>
-              <h5 style={{ fontWeight: "bold", padding: "7px", paddingLeft: "12px", fontSize: "15px" }}>
-              Fatal Flaws
+              <h5 style={{ fontWeight: "bold", padding: "7px", paddingLeft: "0px", fontSize: "15px" }}>
+              Fatal Flaw
             </h5><div
               style={{
                 display: "flex",
