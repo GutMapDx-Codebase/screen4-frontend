@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import { message } from "antd";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Tooltip } from 'antd';
@@ -12,14 +12,71 @@ import "../css/Practitioner.css";
 function JobRequestForm() {
   const [isloading, setIsLoading] = useState(false);
   const [clientDetails,setClientDetails] = useState()
+    const practitionerId = Cookies.get('id')
   const [currentSignatureField, setCurrentSignatureField] = useState("");
   const [allCollectors, setAllCollectors] = useState([]);
+    const token = Cookies.get("Token")
+      const { id } = useParams();
   const openSignaturePad2 = (fieldName) => {
     setCurrentSignatureField(fieldName);
     setIsSignaturePadOpen(true);
     setTimeout(initializeCanvas, 0);
   };
+      const fetchCustomerDetails = async (email) => {
+      const selectedValue = email;
   
+      const emailMatch = selectedValue.match(/\(([^)]+)\)/); // extract email
+      const selectedEmail = emailMatch ? emailMatch[1] : null;
+  
+      setFormData((prev) => ({
+        ...prev,
+        customer: selectedValue,
+      }));
+  
+      if (!selectedEmail) return;
+  
+      try {
+        const res = await fetch(
+          `${process.env.REACT_APP_API_URL}/getcustomerbyemail?email=${selectedEmail}`
+        );
+        const data = await res.json();
+        setClientDetails(data);
+      } catch (err) {
+        console.error("Failed to fetch customer details:", err);
+      }
+    };
+  const fetchScreen4Data = async () => {
+    try {
+      if(!id){
+        return null;
+      }
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/getjobrequest/${id}`);
+      
+      if (!response.ok) {
+        throw new Error("Failed to fetch job request data");
+      }
+      
+      const data = await response.json();
+      // setAccepted(data.isAccepted)
+      
+      if (data.data) {
+        setFormData(data.data); // ✅ Set form data directly from API response
+        console.log(data.data)
+        await fetchCustomerDetails(data.data.customer)
+      } else {
+        throw new Error("Job request not found");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+      useEffect(() => {
+        fetchScreen4Data();
+      }, [id]);
+        const formatDateTimeLocal = (isoString) => {
+      if (!isoString) return '';
+      return new Date(isoString).toISOString().slice(0, 16); // this is enough!
+    };
   const [formData, setFormData] = useState({
     jobReferenceNo: "",
     dateAndTimeOfCollection: "",
@@ -217,16 +274,30 @@ function JobRequestForm() {
   };
 
 
-  useEffect(() => {
-    const setJobRef = async () => {
+  const fetchjobreferenceno = async () =>{
+       const setJobRef = async () => {
       const ref = await generateUniqueJobRef();
+      console.log('called')
       setFormData(prev => ({ ...prev, jobReferenceNo: ref }));
     };
 
     if (!formData.jobReferenceNo) {
       setJobRef();
     }
-  }, []);
+  }
+  useEffect(() => {
+ if(!id){
+     const setJobRef = async () => {
+      const ref = await generateUniqueJobRef();
+      console.log('called')
+      setFormData(prev => ({ ...prev, jobReferenceNo: ref }));
+    };
+
+    if (!formData.jobReferenceNo) {
+      setJobRef();
+    }
+ }
+  }, [!id && !formData.jobReferenceNo]);
 
 
   const pad = (data) => {
@@ -462,31 +533,108 @@ function JobRequestForm() {
   };
 
 
-    const handleSubmit = async (e) => {
+  //   const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await fetch(
+  //       // `${process.env.REACT_APP_API_URL}/addscreen4data`,
+  //       `${process.env.REACT_APP_API_URL}/addscreenforjobrequestform`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(formData),
+  //       }
+  //     );
+
+  //     const result = await response.json();
+
+  //     if (response.ok) {
+  //       message.success("Form submitted successfully!");
+  //     } else {
+  //       message.error(result.message || "Failed to submit form.");
+  //     }
+
+  //     // Reset form
+  //     setFormData({
+  //       jobReferenceNo: "",
+  //       dateAndTimeOfCollection: "",
+  //       location: "",
+  //       customer: "",
+  //       nameOfOnsiteContact: "",
+  //       contactOfTelephoneNo: "",
+  //       numberOfDonors: "",
+  //       TypeOfTest: "",
+  //       callOut: "",
+
+  //       date: "",
+  //       collectionOfficerName: "",
+  //       arrivalTime: "",
+  //       departureTime: "",
+  //       waitingTime: "",
+  //       mileage: "",
+  //       samplesMailed: "",
+  //       breathAlcoholTestsCompleted: "",
+  //       drugTestsCompleted: "",
+  //       nonZeroBreathAlcoholTests: "",
+  //       nonNegativeSamples: "",
+  //       notes: "",
+  //       facilities: {
+  //         privateSecureRoom: false,
+  //         wcFacilities: false,
+  //         handWashing: false,
+  //         securedWindows: false,
+  //         emergencyExits: false,
+  //         translatorRequired: false,
+  //       },
+  //       onsiteSignature: "",
+  //       officerSignature: "",
+  //       author: "",
+  //       rev: "",
+  //       alcoholTestResult: "",
+  //       secondBreathTest: "",
+  //       drugKitType: "",
+  //       nonNegativeSamples: "",
+  //       laboratoryAddress: "",
+  //       sampleDeliveryMethod: "",
+  //       collectorid:""
+  //     });
+  //     navigate("/jobrequests")
+  //   } catch (error) {
+  //     console.error("Error: ", error);
+  //     message.error("Submission failed due to server error.");
+  //   }
+
+  // };
+const handleSubmit = async (e) => {
+  setIsLoading(true);
     e.preventDefault();
-    setIsLoading(true);
     try {
-      const response = await fetch(
-        // `${process.env.REACT_APP_API_URL}/addscreen4data`,
-        `${process.env.REACT_APP_API_URL}/addscreenforjobrequestform`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
+      const url = formData._id 
+        ? `${process.env.REACT_APP_API_URL}/updatejobrequest/${formData._id}`  // Update API
+        : `${process.env.REACT_APP_API_URL}/addscreenforjobrequestform`;  // Create API
+  
+      const method = formData._id ? "PUT" : "POST"; // Use PUT for update, POST for new form
+  
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
       const result = await response.json();
-
+  
       if (response.ok) {
-        message.success("Form submitted successfully!");
+        message.success(formData._id ? "Form updated successfully!" : "Form submitted successfully!");
       } else {
-        message.error(result.message || "Failed to submit form.");
+        message.error(result.message || "Failed to process form.");
       }
-
-      // Reset form
+  
+      // Reset form after submission
       setFormData({
         jobReferenceNo: "",
         dateAndTimeOfCollection: "",
@@ -497,7 +645,6 @@ function JobRequestForm() {
         numberOfDonors: "",
         TypeOfTest: "",
         callOut: "",
-
         date: "",
         collectionOfficerName: "",
         arrivalTime: "",
@@ -528,15 +675,51 @@ function JobRequestForm() {
         nonNegativeSamples: "",
         laboratoryAddress: "",
         sampleDeliveryMethod: "",
-        collectorid:""
       });
       navigate("/jobrequests")
+      // window.close();
     } catch (error) {
       console.error("Error: ", error);
       message.error("Submission failed due to server error.");
     }
+    setIsLoading(false);
 
+    
   };
+  
+
+  const handleAccept = async (e) => {
+    setIsLoading(true);
+    e.preventDefault();
+    
+    console.log("Sending data:", { practitionerId }); // Debugging
+    
+    try {
+      const url = `${process.env.REACT_APP_API_URL}/jobrequestAccept/${id}`;
+      
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({acceptedBy: practitionerId }) // ✅ Ensure correct JSON structure
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        message.success("Form Accepted!");
+      } else {
+        message.error(result.message || "Failed to process form.");
+      }
+      navigate("/jobrequests")
+      // window.close();
+    } catch (error) {
+      console.error("Error: ", error);
+      message.error("Unable to accept due to server error.");
+    }
+    setIsLoading(false);
+  };
+
+
   const handleCustomerChange = async (e) => {
     const selectedValue = e.target.value;
   
@@ -657,7 +840,7 @@ function JobRequestForm() {
               className="inputstyle"
               type="datetime-local"
               name="dateAndTimeOfCollection"
-              value={formData.dateAndTimeOfCollection}
+              value={formatDateTimeLocal(formData.dateAndTimeOfCollection)}
               onChange={handleChange}
               placeholder="Enter Donor's Email"
               required
@@ -665,7 +848,7 @@ function JobRequestForm() {
           </div>
           <hr></hr>
         
-          <div className="donor">
+          {!id ? <div className="donor">
             <label>Customer</label>
            
             <select
@@ -683,31 +866,46 @@ function JobRequestForm() {
                 </option>
               ))}
             </select>
-          </div>
+          </div> : <div className="donor">
+            <label>Customer</label>
+            <input
+              className="inputstyle"
+              type="text"
+              name="customer"
+              value={formData.customer}
+              onChange={handleChange}
+              readOnly={token !== "dskgfsdgfkgsdfkjg35464154845674987dsf@53"}
+              // required
+            />
+          </div>}
 <hr />
           <div className="donor">
-            <label>Collector</label>
-            <select
-              className="inputstyle"
-              name="collector"
-              value={formData.collector || ""}
-              onChange={handleChange}
-              required
-            >
-              <option value="" disabled>
-                Select a collector
-              </option>
-{allCollectors.map((collector)=>{
-  return  <option key={collector.id} value={collector.email + " "}>{collector.name}({collector.email})</option>
-})            } 
-              {/* // <option value="Collector B">Collector B</option>
-              // <option value="Collector C">Collector C</option> */}
-              {/* Add more collectors as needed */}
-            </select>
-          </div>
+  <label>Collector</label>
+  <select
+    className="inputstyle"
+    name="collectorid"
+    value={formData.collectorid || ""}
+    onChange={handleChange}
+    required
+  >
+    <option value="" disabled>
+      Select a collector
+    </option>
+    {allCollectors.map((collector) => (
+      <option key={collector.id} value={collector._id}>
+        {collector.name} ({collector.email})
+      </option>
+    ))}
+  </select>
+</div>
 
 
-          <hr></hr><div className="donor">
+
+          <hr></hr>
+          {!id ? <>
+          
+          
+            <div className="donor">
             <label >Location </label>
             
         <select
@@ -726,7 +924,20 @@ function JobRequestForm() {
             </option>
           ))}
         </select>
-          </div>
+          </div></>:
+          <>
+           <div className="donor">
+            <label>Location </label>
+            <input
+              className="inputstyle"
+              type="text"
+              name="location"
+              value={formData.location}
+              placeholder="Enter Location"
+              onChange={handleChange}
+              readOnly={token !== "dskgfsdgfkgsdfkjg35464154845674987dsf@53"}
+            />
+          </div></>}
           <hr></hr>
           <div className="donor">
             <label>Name of Onsite Contact</label>
@@ -1241,7 +1452,7 @@ function JobRequestForm() {
             </p>
           </div>
 
-        {!isloading ? <button
+        {/* {!isloading ? <button
         className="createjob2"
             type="submit"
             style={{
@@ -1256,8 +1467,54 @@ function JobRequestForm() {
               fontSize: "16px",
             }}
           >
-            Submit
-          </button> : <div style={{width:"100%",display: "flex",justifyContent:"center"}}><img src="/empty.gif" style={{width:"130px",}}/></div>}
+            {!id ? "Submit" : "Update"}
+          </button> : <div style={{width:"100%",display: "flex",justifyContent:"center"}}><img src="/empty.gif" style={{width:"130px",}}/></div>} */}
+
+
+ { !isloading ? 
+         (token ==="dskgfsdgfkgsdfkjg35464154845674987dsf@53" || formData?.isAccepted ? <button
+            type="submit"
+            className="createjob2"
+            onClick={handleSubmit}
+            style={{
+              width: "100%",
+              padding: "10px",
+              background: "#80c209",
+            //   background: "#80c209",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            {formData._id  ? "Update" : "Create"}
+          </button> : 
+
+          // {
+            // accepted ?
+            <button
+            className="createjob2"
+            type="submit"
+            onClick={handleAccept}
+            style={{
+              width: "100%",
+              padding: "10px",
+              background: "#80c209",
+            //   background: "#80c209",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            Accept
+          </button>
+          //  : null
+        // }
+          ) : <div style={{width:"100%",display: "flex",justifyContent:"center"}}><img src="/empty.gif" style={{width:"130px",}}/></div>}
+
         </form>
       </div>
     </>

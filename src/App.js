@@ -97,7 +97,8 @@ function App() {
           <Route path='/screen4testform' element={<Screen4TestForm />} />
           <Route path='/screen4testform2' element={<JobRequestForm />} />
           <Route path="/dashboard/:id" element={<Screen4Details />} />
-          <Route path="/jobrequest/:id" element={<JobRequestDetails />} />
+          {/* <Route path="/jobrequest/:id" element={<JobRequestDetails />} /> */}
+          <Route path="/jobrequest/:id" element={<JobRequestForm  />} />
           <Route path="/dashboard" element={<Analytics />} />
           <Route path="/clients" element={<AllClients />} />
           <Route path="/collectors" element={<AllCollectors />} />

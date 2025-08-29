@@ -259,6 +259,7 @@ function Screen4Details() {
     return `${year}-${month}-${day}`;
   }
   const [formData, setFormData] = useState({
+    cocRefNo: "",
     donorName: "",
     donorEmail: "",
     gcalicno: "",
@@ -924,8 +925,8 @@ function Screen4Details() {
                   className="inputstyle"
                   // style={{ width: "35%", marginLeft: "0px" }}
                   type="text"
-                  name="refno"
-                  value={formData.refno}
+                  name="cocRefNo"
+                  value={formData.cocRefNo}
                   onChange={handleChange}
                 />
               </div>
@@ -2717,7 +2718,7 @@ function Screen4Details() {
               }}
             >
               Update
-            </button> : <img src="/empty.gif" alt="" />) : null}
+            </button> : <div style={{width:"100%",display: "flex",justifyContent:"center"}}><img src="/empty.gif" style={{width:"130px",}}/></div>) : null}
         </form>
       </div>
     </>

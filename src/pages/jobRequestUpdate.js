@@ -28,13 +28,7 @@ function JobRequestDetails() {
 
     const [accepted,setAccepted] = useState(false)
     const { id } = useParams();
-    // const formatDateTimeLocal = (isoString) => {
-    //   if (!isoString) return '';
-    //   const date = new Date(isoString);
-    //   const offset = date.getTimezoneOffset();
-    //   const localDate = new Date(date.getTime() - offset * 60 * 1000);
-    //   return localDate.toISOString().slice(0, 16); // "YYYY-MM-DDTHH:MM"
-    // };
+   
     const formatDateTimeLocal = (isoString) => {
       if (!isoString) return '';
       return new Date(isoString).toISOString().slice(0, 16); // this is enough!

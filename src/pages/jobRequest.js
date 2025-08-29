@@ -97,29 +97,13 @@ const limit = 10; // or whatever you want per page
     }
   };
   
-  // const fetchScreen4Data = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_API_URL}/getjobrequests`
-  //     );
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch client data");
-  //     }
-  //     const data = await response.json();
-  //     setClient(data.data || []);
-  //     setFilteredClients(data.data || []);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+
   const fetchScreen4Data = async (pageNumber = 1, currentTab = selectedTab, query = searchQuery) => {
     setLoading(true)
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/getjobrequests?status=${currentTab.toLowerCase()}&page=${pageNumber}&limit=${limit}&search=${query}`
-      );
+      `${process.env.REACT_APP_API_URL}/getjobrequests?status=${currentTab.toLowerCase()}&page=${pageNumber}&limit=${limit}&id=${collectorId}&token=${encodeURIComponent(token.toString())}&search=${encodeURIComponent(query)}`
+  );
   
       if (!response.ok) throw new Error("Failed to fetch job requests");
   
@@ -237,16 +221,7 @@ const limit = 10; // or whatever you want per page
     filterClients(selectedTab, searchQuery);
   }, [client, selectedTab, searchQuery]); // ✅ Dependencies
 
-  // const handleSearchChange = (event) => {
-  //   const query = event.target.value.toLowerCase();
-  //   setSearchQuery(query);
-  //   filterClients(selectedTab, query);
-  // };
 
-  // const handleTabChange = (tab) => {
-  //   setSelectedTab(tab);
-  //   filterClients(tab, searchQuery);
-  // };
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
     setPage(1); // 👈 reset to first page
@@ -256,8 +231,8 @@ const limit = 10; // or whatever you want per page
   const handleSearchChange = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
-    setPage(1); // 👈 reset to first page
-    fetchScreen4Data(1, selectedTab, query); // 👈 Fetch based on new search
+    setPage(1);
+    fetchScreen4Data(1, selectedTab, query); 
   };
 
   const handleClientClick = async (id) => {
@@ -266,9 +241,9 @@ const limit = 10; // or whatever you want per page
     }
     else if (selectedTab === 'Accepted') {
       try {
-        const collectorFormId = await fetchAcceptedById(id); // ✅ Await the API response
+        const collectorFormId = await fetchAcceptedById(id); 
         if (collectorFormId) {
-          navigate(`/dashboard/${collectorFormId}`); // ✅ Use the fetched ID
+          navigate(`/dashboard/${collectorFormId}`); 
         } else {
           console.error("Collector Form ID not found");
         }
@@ -524,8 +499,8 @@ const limit = 10; // or whatever you want per page
                         <span className="mybold2">{client.customer}</span>
                       </div>
                       <div className="key">
-                        Location :{" "}
-                        <span className="mybold2">{client.location}</span>
+                        Collector :{" "}
+                        <span className="mybold2">{ client.collector.email}</span>
                       </div>
                       {/* <div className="key">Date And Time Of Collection : <span className="mybold">{client.dateAndTimeOfCollection}</span></div> */}
                       <div className="key">
@@ -544,22 +519,7 @@ const limit = 10; // or whatever you want per page
                             hour12: true,
                           })}
                         </span>
-                        {/* {selectedTab==='Pending' && (isDeleting && client._id === deletedId ?<h3 style={{color:"#7cc209"}}>Deleting...</h3> : <button style={{
-                      width: '20%', fontSize: "14px",
-                      marginBottom: "10px",
-                      marginTop: "10px",
-                      border: "none",
-                      background: "#80c209",
-                      color: "white",
-                      padding: "10px 18px",
-                      borderRadius: "10px",
-                      fontWeight: "bold",
-                      textDecoration: "none"
-                    }} 
-                    onClick={async (e) => {deleteJobRequest(client._id); e.stopPropagation();}}
-                    >
-                      Delete
-                    </button>)} */}
+                        
                       </div>
                   </div>
 

@@ -252,13 +252,13 @@ function Index() {
 
                 <button style={{ background: "#80c209" }}>Login</button>
 
-                <h5
+                {/* <h5
                   className="hovar"
                   style={{ margin: "10px", color: "#80c209 " }}
                   onClick={() => setforgetpassword("2")}
                 >
                   Forgot your password?
-                </h5>
+                </h5> */}
               </form>
             </>
           )}
