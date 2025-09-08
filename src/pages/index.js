@@ -89,10 +89,10 @@ function Index() {
         }
       })
       .catch((error) => console.log("error", error));
-    await setTimeout(() => {
+    // setTimeout(() => {
       hide(); // Call hide to stop the loading message
-      message.success("Action completed successfully");
-    }, 2000);
+      // message.success("Action completed successfully");
+    // }, 2000);
   };
 
   const formsubsentotp = async (e) => {
@@ -125,9 +125,9 @@ function Index() {
         }
       })
       .catch((error) => console.log("error", error));
-    await setTimeout(() => {
+    setTimeout(() => {
       hide(); // Call hide to stop the loading message
-      message.success("Action completed successfully");
+      // message.success("Action completed successfully");
     }, 2000);
   };
 
