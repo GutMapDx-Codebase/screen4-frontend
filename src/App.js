@@ -18,6 +18,7 @@ import AllClients from './pages/allClients';
 import AllCollectors from './pages/AllCollectors'
 import AddCollectorForm from './pages/addCollectorForm';
 import BarcodeImageScanner from './components/test';
+import RefusalForm from './pages/refusalform/RefusalForm';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -88,6 +89,7 @@ function App() {
           <Route path='/jobrequests' element={<JobRequests />} />
 
 
+          <Route path="/refusalform" element={<RefusalForm />} />
         </Routes>
 
         <Routes>

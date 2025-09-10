@@ -31,12 +31,12 @@ function JobRequestDetails() {
    
     const formatDateTimeLocal = (isoString) => {
       if (!isoString) return '';
-      return new Date(isoString).toISOString().slice(0, 16); // this is enough!
+      return new Date(isoString).toISOString().slice(0, 16); 
     };
     
     const formatDateOnly = (isoString) => {
       if (!isoString) return '';
-      return new Date(isoString).toISOString().split('T')[0]; // "YYYY-MM-DD"
+      return new Date(isoString).toISOString().split('T')[0]; 
     };
     
     useEffect(() => {
@@ -52,7 +52,7 @@ function JobRequestDetails() {
           setAccepted(data.isAccepted)
     
           if (data.data) {
-            setFormData(data.data); // ✅ Set form data directly from API response
+            setFormData(data.data); 
           } else {
             throw new Error("Job request not found");
           }

@@ -42,9 +42,11 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.17.0",
     "react-scripts": "^5.0.1",
+    "react-signature-canvas": "^1.1.0-alpha.2",
     "react-webcam": "^7.2.0",
     "recharts": "^2.9.2",
     "stripe": "^14.3.0",
+    "trim-canvas": "^0.1.2",
     "web-vitals": "^2.1.4",
     "zego-express-engine-webrtc": "^3.6.0"
   },
